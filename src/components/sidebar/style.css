@@ -1,0 +1,94 @@
+.logo-corner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 33.75px 43px 33.75px 32px;
+  gap: 185.62px;
+
+  position: absolute;
+  width: 200px;
+  height: 98px;
+  left: 0px;
+  top: 0px;
+
+  background: #fcfdff;
+}
+
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 52px 12px 40px;
+  gap: 20px;
+
+  position: absolute;
+  width: 200px;
+  height: 820px;
+  left: 0px;
+  top: 98px;
+
+  background: #fcfdff;
+}
+
+.my-progress {
+  position: absolute;
+  width: 139px;
+  height: 29px;
+  left: 30.5px;
+  top: 52px;
+
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #001134;
+}
+
+.brand-name {
+  position: absolute;
+  width: 120px;
+  height: 25px;
+  left: 46px;
+  top: 35.5px;
+
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+
+  background: linear-gradient(
+    90deg,
+    #fcfdff 37.03%,
+    #c8d7f5 42.97%,
+    #1b3d84 53.85%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.blue-vector {
+  position: absolute;
+  width: 52.96px;
+  height: 45.9px;
+  left: 41.94px;
+  top: 24.48px;
+}
+
+.pink-vector {
+  position: absolute;
+  width: 50.53px;
+  height: 47.05px;
+  left: 55px;
+  transform: rotate(-44.95deg);
+}
