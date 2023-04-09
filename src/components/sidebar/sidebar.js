@@ -7,7 +7,6 @@ import LogOut from "./images/logout.png";
 import ProfilePicture from "./images/profilepicture.png";
 
 class Sidebar extends Component {
-  state = {};
   render() {
     return (
       <div>
