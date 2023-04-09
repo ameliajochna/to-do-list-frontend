@@ -40,7 +40,7 @@
 
   font-family: "Lato", sans-serif;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 24px;
   line-height: 29px;
 
@@ -91,4 +91,82 @@
   height: 47.05px;
   left: 55px;
   transform: rotate(-44.95deg);
+}
+
+.progress {
+  position: absolute;
+  width: 400px;
+  left: -100px;
+  top: 450px;
+  border-radius: 40px;
+  transform: rotate(-90deg);
+}
+
+.progress-bar {
+  background: linear-gradient(
+    90deg,
+    #1b3d84 0%,
+    #fcb2c7 91.07%,
+    #a8002f 181.19%
+  ) !important;
+}
+
+.percent-dot {
+  position: absolute;
+  width: 60px;
+  height: 52px;
+  left: 68px;
+}
+
+.percent-text {
+  position: absolute;
+  width: 60px;
+  height: 52px;
+  left: 78px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #fcfdff;
+}
+
+.log-out-icon {
+  position: absolute;
+  width: 30px;
+  top: 697px;
+  left: 40px;
+}
+
+.log-out-text {
+  position: absolute;
+  top: 696px;
+  left: 75px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  color: #1b3d84;
+}
+
+.transparent-button {
+  border: none;
+  background-color: inherit;
+}
+
+.my-profile-icon {
+  position: absolute;
+  top: 750px;
+  left: 36px;
+  width: 35px;
+}
+
+.profile-pink-dot {
+  position: absolute;
+  top: 747px;
+  left: 32px;
+  width: 45px;
 }
