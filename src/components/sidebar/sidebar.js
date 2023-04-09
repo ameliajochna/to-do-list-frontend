@@ -29,8 +29,9 @@ class Sidebar extends Component {
             className="transparent-button"
             onClick={() => console.log("MOJ PROFIL")}
           >
-            <img className="profile-pink-dot" src={PinkVector} />
-            <img className="my-profile-icon" src={ProfilePicture} />
+            <img className="profile-pink-dot" src={PinkVector} alt="" />
+            <img className="my-profile-icon" src={ProfilePicture} alt="" />
+            <div className="my-profile-text">My Profile</div>
           </button>
         </div>
         <ProgressBar />

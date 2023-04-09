@@ -138,7 +138,7 @@
   position: absolute;
   width: 30px;
   top: 697px;
-  left: 40px;
+  left: 35px;
 }
 
 .log-out-text {
@@ -159,14 +159,25 @@
 
 .my-profile-icon {
   position: absolute;
-  top: 750px;
-  left: 36px;
+  top: 765px;
+  left: 30px;
   width: 35px;
 }
 
 .profile-pink-dot {
   position: absolute;
-  top: 747px;
-  left: 32px;
-  width: 45px;
+  top: 762px;
+  left: 26px;
+  width: 43px;
+}
+
+.my-profile-text {
+  position: absolute;
+  top: 765px;
+  left: 75px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  color: #1b3d84;
 }
