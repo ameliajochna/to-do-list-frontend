@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import DropDownAtom from "./images/dropdown.png";
+import PriorityElement from "./priorityelement";
 
 class DropDown extends Component {
   render() {
     return (
-      <div class="dropdown">
+      <div className="drop-down">
         <button
           className="dropdown-button"
           type="button"
@@ -13,19 +14,13 @@ class DropDown extends Component {
           aria-haspopup="true"
           aria-expanded="false"
         >
-          Priority
+          <div className="priority-text">Priority</div>
           <img className="dropdown-atom" src={DropDownAtom} alt="" />
         </button>
         <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a className="dropdown-item" href="#">
-            Low
-          </a>
-          <a className="dropdown-item" href="#">
-            Medium
-          </a>
-          <a className="dropdown-item" href="#">
-            High
-          </a>
+          <PriorityElement name={"Low"} id={1} />
+          <PriorityElement name={"Medium"} id={2} />
+          <PriorityElement name={"High"} id={3} />
         </div>
       </div>
     );

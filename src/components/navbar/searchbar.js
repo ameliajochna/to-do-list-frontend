@@ -23,7 +23,9 @@ class SearchBar extends Component {
           onChange={(s) => this.setSearchName(s.target.value)}
           className="search-bar"
         />
-        <img className="search-atom" src={SearchAtom} alt="" />
+        <button className="transparent-button">
+          <img className="search-atom" src={SearchAtom} alt="" />
+        </button>
       </div>
     );
   }
