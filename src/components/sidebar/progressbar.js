@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import "./style.css";
 import blueVector from "./images/bluedot.png";
+
 class ProgressBar extends Component {
   percentage = () => {
     // const doneTasks = [...this.props.tasks].filter((t) => t.active === false);
     // const ratio = (doneTasks.length / this.props.tasks.length) * 100;
-    const ratio = 30;
+    const ratio = 20;
     return ratio + "%";
   };
 

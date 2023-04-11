@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./style.css";
+import "./styles.css";
 import BlueVector from "./images/bluedot.png";
 import PinkVector from "./images/pinkdot.png";
 import ProgressBar from "./progressbar";

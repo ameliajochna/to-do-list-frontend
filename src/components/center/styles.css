@@ -1,0 +1,37 @@
+.main-components {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  position: absolute;
+  width: 90%;
+  height: 88%;
+  left: 200px;
+  top: 12%;
+
+  background: #f7f9ff;
+}
+
+.table-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 32px;
+  gap: 40px;
+  width: 25%;
+  height: 85%;
+  margin-top: 4%;
+
+  background: #fcfdff;
+  box-shadow: 7px 10px 25px rgba(0, 17, 52, 0.1);
+  border-radius: 8px;
+}
+
+.left {
+  margin-left: 8%;
+  margin-right: 5%;
+}
+
+.right {
+  margin-right: 8%;
+  margin-left: 5%;
+}
