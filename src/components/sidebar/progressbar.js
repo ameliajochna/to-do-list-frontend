@@ -5,7 +5,7 @@ class ProgressBar extends Component {
   percentage = () => {
     // const doneTasks = [...this.props.tasks].filter((t) => t.active === false);
     // const ratio = (doneTasks.length / this.props.tasks.length) * 100;
-    const ratio = 20;
+    const ratio = 60;
     return ratio + "%";
   };
 

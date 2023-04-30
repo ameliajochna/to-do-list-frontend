@@ -1,15 +1,11 @@
 .logo-corner {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  padding: 33.75px 43px 33.75px 32px;
-  gap: 185.62px;
+  text-align: center;
 
   position: absolute;
-  width: 200px;
-  height: 98px;
-  left: 0px;
-  top: 0px;
+  width: 14%;
+  height: 10%;
 
   background: #fcfdff;
 }
@@ -19,50 +15,36 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  padding: 52px 12px 40px;
-  gap: 20px;
-
   position: absolute;
-  width: 200px;
-  height: 820px;
-  left: 0px;
-  top: 98px;
+  width: 14%;
+  height: 90%;
+  top: 10%;
 
   background: #fcfdff;
 }
 
 .my-progress {
   position: absolute;
-  width: 139px;
-  height: 29px;
-  left: 30.5px;
-  top: 52px;
+  top: 7%;
 
   font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 24px;
-  line-height: 29px;
-
-  display: flex;
-  align-items: center;
-  text-align: center;
+  font-size: 130%;
 
   color: #001134;
 }
 
 .brand-name {
   position: absolute;
-  width: 120px;
-  height: 25px;
-  left: 46px;
-  top: 35.5px;
+  left: 27.5%;
+  top: 33%;
 
   font-family: "Lato";
   font-style: normal;
   font-weight: 700;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 125%;
+
   display: flex;
   align-items: center;
 
@@ -78,19 +60,21 @@
 }
 
 .blue-vector {
-  position: absolute;
   width: 52.96px;
   height: 45.9px;
-  left: 41.94px;
-  top: 24.48px;
+  position: absolute;
+  left: 26.5%;
+  top: 26%;
+  transform: rotate(22.41deg);
 }
 
 .pink-vector {
+  width: 55px;
+  height: 50px;
   position: absolute;
-  width: 50.53px;
-  height: 47.05px;
-  left: 55px;
-  transform: rotate(-44.95deg);
+  left: 26.5%;
+  top: 24%;
+  transform: rotate(10deg);
 }
 
 .progress {

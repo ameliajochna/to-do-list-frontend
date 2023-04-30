@@ -13,10 +13,10 @@ class Sidebar extends Component {
         <div className="logo-corner">
           <img className="pink-vector" src={PinkVector} alt="" />
           <img className="blue-vector" src={BlueVector} alt="" />
-          <div className="brand-name">Productivity</div>
+          <p className="brand-name">Productivity</p>
         </div>
         <div className="side-bar">
-          <div className="my-progress">My progress</div>
+          <p className="my-progress">My progress</p>
           <button
             className="transparent-button"
             onClick={() => console.log("WYLOGUJ")}
