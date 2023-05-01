@@ -17,6 +17,7 @@ class Sidebar extends Component {
         </div>
         <div className="side-bar">
           <p className="my-progress">My progress</p>
+          <ProgressBar />
           <button
             className="transparent-button"
             onClick={() => console.log("WYLOGUJ")}
@@ -33,7 +34,6 @@ class Sidebar extends Component {
             <div className="my-profile-text">My Profile</div>
           </button>
         </div>
-        <ProgressBar />
       </div>
     );
   }
