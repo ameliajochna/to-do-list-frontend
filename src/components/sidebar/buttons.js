@@ -6,21 +6,22 @@ import ProfilePicture from "./images/profilepicture.png";
 class Buttons extends Component {
   render() {
     return (
-      <div>
+      <div className="buttons-group">
         <button
           className="transparent-button"
           onClick={() => console.log("WYLOGUJ")}
         >
           <img className="log-out-icon" src={LogOut} alt="" />
-          <div className="log-out-text">Log Out</div>
+          <p className="log-out-text">Log Out</p>
         </button>
+
         <button
           className="transparent-button"
           onClick={() => console.log("MOJ PROFIL")}
         >
           <img className="profile-pink-dot" src={PinkVector} alt="" />
           <img className="my-profile-icon" src={ProfilePicture} alt="" />
-          <div className="my-profile-text">My Profile</div>
+          <p className="my-profile-text">My Profile</p>
         </button>
       </div>
     );

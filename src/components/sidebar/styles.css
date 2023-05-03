@@ -108,50 +108,66 @@
   color: #fcfdff;
 }
 
+.progress-block {
+  height: 90%;
+}
+
+.buttons-group {
+  width: 80%;
+  height: 25%;
+  align-items: center;
+  text-align: center;
+}
+
 .log-out-icon {
-  position: absolute;
-  width: 30px;
-  top: 697px;
-  left: 35px;
+  position: relative;
+  display: inline;
+  margin-right: 7%;
+  margin-bottom: 2%;
+  height: 75%;
 }
 
 .log-out-text {
-  position: absolute;
-  top: 696px;
-  left: 75px;
+  position: relative;
+
+  display: inline;
   font-family: "Lato";
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 140%;
   color: #1b3d84;
 }
 
 .transparent-button {
+  margin-top: 2%;
+  width: 95%;
+  height: 25%;
+  text-align: center;
+  align-items: center;
   border: none;
   background-color: inherit;
 }
 
 .my-profile-icon {
-  position: absolute;
-  top: 765px;
-  left: 30px;
-  width: 35px;
+  position: relative;
+  display: inline;
+  right: 13%;
 }
 
 .profile-pink-dot {
-  position: absolute;
-  top: 762px;
-  left: 26px;
-  width: 43px;
+  position: relative;
+  display: inline;
+  left: 8%;
 }
 
 .my-profile-text {
-  position: absolute;
-  top: 765px;
-  left: 75px;
+  position: relative;
+  right: 6%;
+  display: inline;
+
   font-family: "Lato";
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 140%;
   color: #1b3d84;
 }

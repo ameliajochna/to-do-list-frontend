@@ -5,7 +5,7 @@ class ProgressBar extends Component {
   percentage = () => {
     // const doneTasks = [...this.props.tasks].filter((t) => t.active === false);
     // const ratio = (doneTasks.length / this.props.tasks.length) * 100;
-    const ratio = 70;
+    const ratio = 60;
     return ratio + "%";
   };
 
@@ -17,7 +17,7 @@ class ProgressBar extends Component {
 
   render() {
     return (
-      <div>
+      <div className="progress-block">
         <div className="progress" style={{ height: "25px" }}>
           <div className="progress-bar" style={{ width: this.percentage() }} />
         </div>
