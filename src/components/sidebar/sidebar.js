@@ -5,23 +5,21 @@ import PinkVector from "./images/pinkdot.png";
 import ProgressBar from "./progressbar";
 import Buttons from "./buttons";
 
-class Sidebar extends Component {
-  render() {
-    return (
-      <div>
-        <div className="logo-corner">
-          <img className="pink-vector" src={PinkVector} alt="" />
-          <img className="blue-vector" src={BlueVector} alt="" />
-          <p className="brand-name">Productivity</p>
-        </div>
-        <div className="side-bar">
-          <p className="my-progress">My progress</p>
-          <ProgressBar />
-          <Buttons />
-        </div>
+function Sidebar({ data }) {
+  return (
+    <div>
+      <div className="logo-corner">
+        <img className="pink-vector" src={PinkVector} alt="" />
+        <img className="blue-vector" src={BlueVector} alt="" />
+        <p className="brand-name">Productivity</p>
       </div>
-    );
-  }
+      <div className="side-bar">
+        <p className="my-progress">My progress</p>
+        <ProgressBar data={data} />
+        <Buttons />
+      </div>
+    </div>
+  );
 }
 
 export default Sidebar;

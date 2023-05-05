@@ -1,19 +1,46 @@
-.table-group {
+.table-backgroud {
   position: absolute;
-  width: 86%;
-  height: 90%;
   left: 14%;
   top: 10%;
-  padding: 0.5rem;
+  width: 86%;
+  height: 90%;
+  background: #f7f9ff;
+}
+
+.table-group {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 300px);
-  gap: 0.5rem;
+  min-height: 85%;
+  margin-top: 4%;
+  margin-left: 10%;
+  margin-right: 7%;
+  grid-template-columns: repeat(auto-fill, 27%);
+  gap: 6%;
 }
 
 .table {
-  background-color: gray;
-  border-radius: 5px;
-  padding: 0.5rem;
+  background-color: #fcfdff;
+  box-shadow: 7px 10px 25px rgba(0, 17, 52, 0.1);
+  border-radius: 8px;
+}
+
+.menu {
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 10%;
+}
+
+.description {
+  font-size: 100%;
+  color: #001134;
+}
+
+.title {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 160%;
+
+  color: #001134;
 }
 
 .table-item {

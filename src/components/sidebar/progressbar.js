@@ -3,9 +3,10 @@ import blueVector from "./images/bluedot.png";
 
 class ProgressBar extends Component {
   percentage = () => {
-    // const doneTasks = [...this.props.tasks].filter((t) => t.active === false);
-    // const ratio = (doneTasks.length / this.props.tasks.length) * 100;
-    const ratio = 60;
+    const data = this.props.data;
+    const sum =
+      data[0].items.length + data[1].items.length + data[2].items.length;
+    const ratio = (data[2].items.length / sum) * 100;
     return ratio + "%";
   };
 

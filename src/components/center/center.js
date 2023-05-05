@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./styles.css";
 
 function Center({ data }) {
@@ -7,13 +7,23 @@ function Center({ data }) {
 
   const dragItem = useRef();
   const dragNode = useRef();
+  let dragImg;
+
+  useEffect(() => {
+    dragImg = new Image(0, 0);
+    dragImg.src =
+      "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+  });
 
   const handleDragStart = (e, p) => {
     console.log("drag starting");
 
+    e.dataTransfer.setDragImage(dragImg, 0, 0);
+
     dragNode.current = e.target;
     dragNode.current.addEventListener("dragend", handleDragEnd);
     dragItem.current = p;
+    console.log(dragItem);
 
     setTimeout(() => {
       setDragging(true);
@@ -21,9 +31,11 @@ function Center({ data }) {
   };
 
   const handleDragEnter = (e, p) => {
+    console.log("dragging");
+    console.log(p.grpI, p.itemI);
+    console.log(dragItem.current.grpI, dragItem.current.itemI);
     if (e.target !== dragNode.current) {
       console.log("target different");
-      console.log(p, dragItem);
       setList((oldList) => {
         let newList = JSON.parse(JSON.stringify(oldList));
         newList[p.grpI].items.splice(
@@ -43,53 +55,65 @@ function Center({ data }) {
   const handleDragEnd = () => {
     console.log("Ending drag");
     setDragging(false);
-    dragNode.current.removeEventListener("dragend", handleDragEnd);
     dragItem.current = null;
+    dragNode.current.removeEventListener("dragend", handleDragEnd);
     dragNode.current = null;
   };
 
   const getStyles = (p) => {
-    const currentItem = dragItem.current;
-    if (currentItem.grpI === p.grpI && currentItem.itemI === p.itemI) {
+    if (
+      dragItem.current.grpI === p.grpI &&
+      dragItem.current.itemI === p.itemI
+    ) {
       return "current table-item";
     }
     return "table-item";
   };
 
+  const generateDescription = (n) => {
+    if (n == 1) return "task";
+    else return "tasks";
+  };
+
   return (
-    <div className="table-group">
-      {list.map((grp, grpI) => (
-        <div
-          key={grp.title}
-          className="table"
-          onDragEnter={
-            dragging && !grp.items.lenght
-              ? (e) => handleDragEnter(e, { grpI, itemI: 0 })
-              : null
-          }
-        >
-          <p className="table-title">{grp.title}</p>
-          {grp.items.map((item, itemI) => (
-            <div
-              draggable
-              onDragStart={(e) => {
-                handleDragStart(e, { grpI, itemI });
-              }}
-              onDragEnter={
-                dragging
-                  ? (e) => {
-                      handleDragEnter(e, { grpI, itemI });
-                    }
-                  : null
-              }
-              key={item}
-              className={dragging ? getStyles({ grpI, itemI }) : "table-item"}
-            >
-              {item}
+    <div className="table-backgroud">
+      <div className="table-group">
+        {list.map((grp, grpI) => (
+          <div
+            key={grp.title}
+            onDragEnter={
+              dragging && !grp.items.length
+                ? (e) => handleDragEnter(e, { grpI, itemI: 0 })
+                : null
+            }
+            className="table"
+          >
+            <div className="menu">
+              <header className="title">{grp.title}</header>
+              <p className="description">
+                {grp.items.length} {generateDescription(grp.items.length)}
+              </p>
             </div>
-          ))}
-        </div>
-      ))}
+            {grp.items.map((item, itemI) => (
+              <div
+                draggable
+                key={item}
+                onDragStart={(e) => handleDragStart(e, { grpI, itemI })}
+                onDragEnter={
+                  dragging
+                    ? (e) => {
+                        handleDragEnter(e, { grpI, itemI });
+                      }
+                    : null
+                }
+                className={dragging ? getStyles({ grpI, itemI }) : "table-item"}
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
