@@ -5,7 +5,7 @@ import PinkVector from "./images/pinkdot.png";
 import ProgressBar from "./progressbar";
 import Buttons from "./buttons";
 
-function Sidebar({ data }) {
+const Sidebar = ({ data }) => {
   return (
     <div>
       <div className="logo-corner">
@@ -20,6 +20,6 @@ function Sidebar({ data }) {
       </div>
     </div>
   );
-}
+};
 
 export default Sidebar;

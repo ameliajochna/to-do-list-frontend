@@ -1,13 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./styles.css";
+import DotsIcon from "./images/dots.png";
+import PlusIcon from "./images/plus.png";
+import Popup from "./popup";
 
-function Center({ data }) {
+const Center = ({ data }) => {
   const [list, setList] = useState(data);
   const [dragging, setDragging] = useState(false);
 
   const dragItem = useRef();
   const dragNode = useRef();
   let dragImg;
+
+  const [popWindow, setPop] = useState(false);
+  const popGroup = useRef();
 
   useEffect(() => {
     dragImg = new Image(0, 0);
@@ -31,9 +37,6 @@ function Center({ data }) {
   };
 
   const handleDragEnter = (e, p) => {
-    console.log("dragging");
-    console.log(p.grpI, p.itemI);
-    console.log(dragItem.current.grpI, dragItem.current.itemI);
     if (e.target !== dragNode.current) {
       console.log("target different");
       setList((oldList) => {
@@ -52,6 +55,7 @@ function Center({ data }) {
       });
     }
   };
+
   const handleDragEnd = () => {
     console.log("Ending drag");
     setDragging(false);
@@ -75,6 +79,23 @@ function Center({ data }) {
     else return "tasks";
   };
 
+  const defineColor = (s) => {
+    if (s === "Low") return "#6D7C1D";
+    else if (s === "Medium") return "#C25600";
+    else return "#AF3218";
+  };
+
+  const defineBorder = (s) => {
+    if (s === "Low") return "1px solid #6D7C1D";
+    else if (s === "Medium") return "1px solid #C25600";
+    else return "1px solid #AF3218";
+  };
+
+  const openPopUp = (p) => {
+    setPop(true);
+    popGroup.current = p;
+  };
+
   return (
     <div className="table-backgroud">
       <div className="table-group">
@@ -89,10 +110,23 @@ function Center({ data }) {
             className="table"
           >
             <div className="menu">
-              <header className="title">{grp.title}</header>
-              <p className="description">
-                {grp.items.length} {generateDescription(grp.items.length)}
-              </p>
+              <div className="menu-text">
+                <header className="title">{grp.title}</header>
+                <p className="description">
+                  {grp.items.length} {generateDescription(grp.items.length)}
+                </p>
+              </div>
+              <div className="buttons">
+                <button className="plus-button" onClick={() => openPopUp(grpI)}>
+                  <img className="plus-icon" src={PlusIcon} alt="" />
+                </button>
+                <button
+                  className="dots-button"
+                  onClick={() => console.log("options")}
+                >
+                  <img className="dots-icon" src={DotsIcon} alt="" />
+                </button>
+              </div>
             </div>
             {grp.items.map((item, itemI) => (
               <div
@@ -108,14 +142,49 @@ function Center({ data }) {
                 }
                 className={dragging ? getStyles({ grpI, itemI }) : "table-item"}
               >
-                {item}
+                <div className="priority-block">
+                  <div
+                    className="item-priority"
+                    style={{ border: defineBorder(item[0]) }}
+                  >
+                    <p
+                      className="priority-text"
+                      style={{ color: defineColor(item[0]) }}
+                    >
+                      {item[0]}
+                    </p>
+                  </div>
+                </div>
+                <button
+                  className="item-button-block"
+                  onClick={() => console.log("more: ", grpI, itemI)}
+                >
+                  <img className="item-button" src={DotsIcon} alt="" />
+                </button>
+                <div className="item-text">
+                  <div className="item-title">{item[1]}</div>
+                  <div className="item-description">{item[2]}</div>
+                </div>
               </div>
             ))}
           </div>
         ))}
       </div>
+      {popWindow ? (
+        <div>
+          <div className="page-blur" />
+          <Popup
+            popChange={setPop}
+            listChange={setList}
+            taskList={list}
+            grpI={popGroup.current}
+          />
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
-}
+};
 
 export default Center;

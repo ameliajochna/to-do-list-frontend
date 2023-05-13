@@ -1,34 +1,22 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import SearchAtom from "./images/searching.png";
 
-class SearchBar extends Component {
-  state = {
-    searchingName: "",
-  };
+const SearchBar = () => {
+  const [searchName, setName] = useState("");
 
-  setSearchName = (name) => {
-    this.setState({ searchingName: name });
-  };
-
-  searchName = () => {};
-
-  render() {
-    return (
-      <div>
-        <input
-          type="text"
-          required
-          placeholder="Search"
-          value={this.state.searchingName}
-          onChange={(s) => this.setSearchName(s.target.value)}
-          className="search-bar"
-        />
-        <button className="transparent-button">
-          <img className="search-atom" src={SearchAtom} alt="" />
-        </button>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="search-bar-object">
+      <input
+        type="text"
+        required
+        placeholder="Search"
+        value={searchName}
+        onChange={(e) => setName(e.target.value)}
+        className="search-bar"
+      />
+      <img className="search-atom" src={SearchAtom} alt="" />
+    </div>
+  );
+};
 
 export default SearchBar;

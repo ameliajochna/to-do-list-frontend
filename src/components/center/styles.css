@@ -8,30 +8,36 @@
 }
 
 .table-group {
+  position: absolute;
   display: grid;
-  min-height: 85%;
-  margin-top: 4%;
-  margin-left: 10%;
-  margin-right: 7%;
-  grid-template-columns: repeat(auto-fill, 27%);
-  gap: 6%;
+  height: 95%;
+  top: 4%;
+  width: 90%;
+  left: 5.5%;
+  grid-template-columns: repeat(auto-fill, 31%);
+  gap: 3%;
 }
 
 .table {
   background-color: #fcfdff;
   box-shadow: 7px 10px 25px rgba(0, 17, 52, 0.1);
   border-radius: 8px;
+  overflow-y: auto;
 }
 
 .menu {
-  width: 80%;
-  margin-left: 10%;
-  margin-top: 10%;
+  display: grid;
+  grid-template-columns: 3;
+  grid-template-rows: 1;
+  width: 100%;
 }
 
-.description {
-  font-size: 100%;
-  color: #001134;
+.menu-text {
+  margin-left: 15%;
+  margin-top: 3vh;
+  grid-row: 1;
+  grid-column: 1;
+  width: 110%;
 }
 
 .title {
@@ -39,23 +45,194 @@
   font-style: normal;
   font-weight: 700;
   font-size: 160%;
-
   color: #001134;
 }
 
+.description {
+  margin-top: -3%;
+  font-size: 100%;
+  color: #001134;
+}
+
+.buttons {
+  grid-row: 1;
+  grid-column: 2;
+  position: relative;
+  margin-top: 3vh;
+  margin-left: 30%;
+  width: 70%;
+}
+
+.plus-button {
+  margin-top: 12%;
+  margin-left: 22%;
+  background-color: inherit;
+  border: none;
+}
+
+.dots-button {
+  margin-left: 6%;
+  background-color: inherit;
+  border: none;
+}
+
 .table-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 150px;
-  background-color: white;
-  border-radius: 5px;
-  color: black;
-  margin-bottom: 0.5rem;
-  font: bold;
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: 3;
+  align-items: flex-start;
+  background: #fcfdff;
+  border: 1px solid #c8d7f5;
+  border-radius: 9px;
+  height: auto;
+  min-height: 100px;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 3%;
+}
+
+.priority-block {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.item-priority {
+  border-radius: 8px;
+  display: inline-block;
+  vertical-align: top;
+  height: 30px;
+  margin-left: 5%;
+  margin-top: 5%;
+}
+
+.priority-text {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 100%;
+  position: relative;
+  margin-top: -6px;
+  margin-left: -3px;
+  margin-right: 3px;
+}
+
+.item-button-block {
+  grid-row: 1;
+  grid-column: 1;
+  margin-left: 85%;
+  margin-top: 5%;
+  width: 13%;
+  border: none;
+  background-color: inherit;
+}
+
+.item-text {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.item-title {
+  grid-row: 2;
+  grid-column: 1;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #001134;
+  margin-top: 2%;
+}
+
+.item-description {
+  grid-row: 3;
+  grid-column: 1;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #001134;
+  margin-bottom: 2%;
 }
 
 .current {
   background-color: inherit;
   color: inherit;
+}
+
+.popup-window {
+  position: absolute;
+  top: 12%;
+  left: 25%;
+  width: 35%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  background: #f7f9ff;
+  border-radius: 8px;
+  text-align: center;
+  align-items: center;
+}
+
+.page-blur {
+  position: absolute;
+  width: 117%;
+  height: 112%;
+  top: -12%;
+  left: -17%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.add-title {
+  position: relative;
+  width: 70%;
+  margin-top: 3%;
+  height: 15%;
+}
+
+.input-title {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 12px 32px;
+  gap: 12px;
+  background: #fcfdff;
+  border-radius: 8px;
+  border: none;
+}
+
+.input-title::placeholder {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 180%;
+  color: #1b3d84;
+}
+
+.add-description {
+  position: relative;
+  width: 70%;
+  margin-top: 3%;
+  height: 40%;
+  margin-bottom: 10%;
+}
+
+.input-description {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 12px 32px;
+  gap: 12px;
+  background: #fcfdff;
+  border-radius: 8px;
+  border: none;
+}
+
+.input-description::placeholder {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #1b3d84;
 }

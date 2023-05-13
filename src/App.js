@@ -7,18 +7,22 @@ var data = [
   {
     title: "To do",
     items: [
-      ["medium", "preparation of tasks for school in mathematics"],
-      ["low", "book a table"],
+      [
+        "Medium",
+        "Preparation of tasks for school in mathematics",
+        "Do one task for each of the pages until the exam on 20th September in order to pass for A",
+      ],
+      ["Low", "Book a table"],
     ],
   },
   {
     title: "In progress",
     items: [
-      ["high", "prepare a presentation", "tasks 20 and 21 from the textbook"],
-      ["high", "do maths tasks", "page 20-30"],
+      ["High", "Prepare a presentation", "Tasks 20 and 21 from the textbook"],
+      ["High", "Do maths tasks", "Page 20-30"],
     ],
   },
-  { title: "Done", items: [["low", "vacuum"]] },
+  { title: "Done", items: [["Low", "Vacuum"]] },
 ];
 
 class App extends Component {
