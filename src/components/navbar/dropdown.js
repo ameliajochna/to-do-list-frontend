@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import DropDownAtom from "./images/dropdown.png";
 import PriorityElement from "./priorityelement";
 
-const DropDown = ({ place }) => {
+const DropDown = ({ place, changeClick }) => {
   //place - either navbar or popup
 
-  const [clicked, setClick] = useState("");
+  const [clicked, setClicked] = useState("");
   const placeId = place;
 
   const defineColor = () => {
     if (clicked === "Low") return "#6D7C1D";
     else if (clicked === "Medium") return "#C25600";
-    else if (clicked == "High") return "#AF3218";
+    else if (clicked === "High") return "#AF3218";
     else return "#1b3d84";
   };
 
@@ -30,10 +30,26 @@ const DropDown = ({ place }) => {
         </p>
         <img className="dropdown-atom" src={DropDownAtom} alt="" />
       </button>
-      <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <PriorityElement data={["Low", 1]} changeClick={setClick} />
-        <PriorityElement data={["Medium", 2]} changeClick={setClick} />
-        <PriorityElement data={["High", 3]} changeClick={setClick} />
+      <div
+        className="dropdown-menu"
+        id="priority"
+        aria-labelledby="dropdownMenuButton"
+      >
+        <PriorityElement
+          data={["Low", 1]}
+          setClick={setClicked}
+          changeClick={changeClick}
+        />
+        <PriorityElement
+          data={["Medium", 2]}
+          setClick={setClicked}
+          changeClick={changeClick}
+        />
+        <PriorityElement
+          data={["High", 3]}
+          setClick={setClicked}
+          changeClick={changeClick}
+        />
       </div>
     </div>
   );

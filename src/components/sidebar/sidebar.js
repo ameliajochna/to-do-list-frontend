@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./styles.css";
 import BlueVector from "./images/bluedot.png";
 import PinkVector from "./images/pinkdot.png";

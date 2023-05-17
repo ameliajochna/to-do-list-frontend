@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
-const PriorityElement = ({ data, changeClick }) => {
+const PriorityElement = ({ data, setClick, changeClick }) => {
   const name = data[0];
-  const id = data[1];
 
   const defineColor = () => {
     if (name === "Low") return "#6D7C1D";
@@ -13,6 +12,7 @@ const PriorityElement = ({ data, changeClick }) => {
   const handleClick = () => {
     console.log(name);
     changeClick(name);
+    setClick(name);
   };
 
   return (

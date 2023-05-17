@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 import blueVector from "./images/bluedot.png";
 
 const ProgressBar = ({ data }) => {
   const list = data;
 
   const percentage = () => {
-    const data = list;
-    const sum =
-      data[0].items.length + data[1].items.length + data[2].items.length;
-    const ratio = (data[2].items.length / sum) * 100;
-    return ratio + "%";
+    // const data = list;
+    // const sum =
+    //   data[0].items.length + data[1].items.length + data[2].items.length;
+    // const ratio = (data[2].items.length / sum) * 100;
+    return 20 + "%";
   };
 
   const vertPosition = () => {

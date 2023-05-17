@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import DropDown from "../navbar/dropdown";
 
-function Popup({ popChange, listChange, taskList, grpI }) {
+function Popup({
+  token,
+  id,
+  setErrorMessage,
+  popChange,
+  listChange,
+  taskList,
+  grpI,
+}) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [priority, setPriority] = useState("");
 
   const addTask = () => {
     popChange(false);
-    const toAdd = ["High", title, description];
-    console.log(toAdd);
+    const toAdd = [priority, title, description];
     let list = taskList[grpI].items;
-    console.log(list);
     let newList = [toAdd, ...list];
     const newTaskList = taskList.map((v, i) => {
       if (i === grpI) v.items = newList;
@@ -28,7 +35,7 @@ function Popup({ popChange, listChange, taskList, grpI }) {
   };
   return (
     <div className="popup-window" onKeyUp={(e) => handleKey(e)}>
-      <DropDown place="pu" />
+      <DropDown place="pu" changeClick={setPriority} />
       <div className="add-title">
         <input
           type="text"
