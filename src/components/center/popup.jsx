@@ -1,38 +1,55 @@
 import React, { useState } from "react";
 import DropDown from "../navbar/dropdown";
 
-function Popup({
-  token,
-  id,
-  setErrorMessage,
-  popChange,
-  listChange,
-  taskList,
-  grpI,
-}) {
+function Popup({ token, setErrorMessage, getTasks, popChange, grpI }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
+  const [error, setError] = useState("");
 
-  const addTask = () => {
-    popChange(false);
-    const toAdd = [priority, title, description];
-    let list = taskList[grpI].items;
-    let newList = [toAdd, ...list];
-    const newTaskList = taskList.map((v, i) => {
-      if (i === grpI) v.items = newList;
-      return v;
-    });
-    listChange(newTaskList);
+  const handleCreateTask = async (e) => {
+    if (priority === "") {
+      setError(true);
+      return;
+    }
+
+    e.preventDefault();
+
+    let grpName;
+    if (grpI === 0) grpName = "To do";
+    else if (grpI === 1) grpName = "In progress";
+    else grpName = "Done";
+
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify({
+        state: grpName,
+        title: title,
+        description: description,
+        priority: priority,
+      }),
+    };
+    const response = await fetch("/api/tasks", requestOptions);
+    if (!response.ok) {
+      setErrorMessage("Something went wrong when adding a task");
+    } else {
+      popChange(false);
+      getTasks();
+    }
   };
 
   const handleKey = (e) => {
     if (e.key === "Enter") {
-      addTask();
+      handleCreateTask(e);
     } else if (e.key === "Escape") {
       popChange(false);
     }
   };
+
   return (
     <div className="popup-window" onKeyUp={(e) => handleKey(e)}>
       <DropDown place="pu" changeClick={setPriority} />
@@ -56,6 +73,13 @@ function Popup({
           className="input-description"
         />
       </div>
+      {error ? (
+        <>
+          <p className="error-input">Please choose the priority of the task</p>
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

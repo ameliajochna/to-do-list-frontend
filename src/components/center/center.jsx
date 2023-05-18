@@ -6,12 +6,28 @@ import DotsIcon from "./images/dots.png";
 import PlusIcon from "./images/plus.png";
 import Popup from "./popup";
 
-const Center = ({ data }) => {
+const Center = () => {
   const [token] = useContext(UserContext);
   const [tasks, setTasks] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [loaded, setLoaded] = useState(false);
-  const [id, setId] = useState(null);
+
+  const handleDelete = async (item, id) => {
+    console.log("item: ", item);
+    const requestOptions = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    };
+    const response = await fetch(`/api/tasks/${id}`, requestOptions);
+    if (!response.ok) {
+      setErrorMessage("Failed to delete");
+    } else {
+      getTasks();
+    }
+  };
 
   const getTasks = async () => {
     const requestOptions = {
@@ -105,7 +121,6 @@ const Center = ({ data }) => {
   };
 
   const handleDragEnd = () => {
-    console.log("Ending drag");
     setDragging(false);
     dragItem.current = null;
     dragNode.current.removeEventListener("dragend", handleDragEnd);
@@ -142,14 +157,6 @@ const Center = ({ data }) => {
   const openPopUp = (p) => {
     setPop(true);
     popGroup.current = p;
-  };
-
-  const delateTask = (e, grpI, itemI) => {
-    let copyList = [...list];
-    let taskList = copyList[grpI].items;
-    let newList = taskList.filter((v, i) => i !== itemI);
-    copyList[grpI].items = newList;
-    setList(copyList);
   };
 
   return (
@@ -237,7 +244,7 @@ const Center = ({ data }) => {
                         >
                           <button
                             className="delate-mode-button"
-                            onClick={(e) => delateTask(e, grpI, itemI)}
+                            onClick={() => handleDelete(item, item.id)}
                           >
                             Delate
                           </button>
@@ -259,9 +266,10 @@ const Center = ({ data }) => {
             <div>
               <div className="page-blur" />
               <Popup
+                token={token}
+                setErrorMessage={setErrorMessage}
+                getTasks={getTasks}
                 popChange={setPop}
-                listChange={setList}
-                taskList={list}
                 grpI={popGroup.current}
               />
             </div>
