@@ -5,7 +5,7 @@ import PinkVector from "./images/pinkdot.png";
 import ProgressBar from "./progressbar";
 import Buttons from "./buttons";
 
-const Sidebar = ({ data }) => {
+const Sidebar = ({ percent }) => {
   return (
     <div>
       <div className="logo-corner">
@@ -15,7 +15,7 @@ const Sidebar = ({ data }) => {
       </div>
       <div className="side-bar">
         <p className="my-progress">My progress</p>
-        <ProgressBar data={data} />
+        <ProgressBar percent={percent} />
         <Buttons />
       </div>
     </div>

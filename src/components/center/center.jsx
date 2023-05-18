@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
-import moment from "moment";
 import { UserContext } from "../../context/UserContext";
 import "./styles.css";
+import Sidebar from "../sidebar/sidebar";
 import DotsIcon from "./images/dots.png";
 import PlusIcon from "./images/plus.png";
 import Popup from "./popup";
@@ -11,6 +11,7 @@ const Center = () => {
   const [tasks, setTasks] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [loaded, setLoaded] = useState(false);
+  const [percent, setPercent] = useState(0);
 
   const handleDelete = async (item, id) => {
     console.log("item: ", item);
@@ -67,6 +68,9 @@ const Center = () => {
       { title: "Done", items: done },
     ];
     setList(newList);
+    const percent = Math.round((done.length / tasksCopy.length) * 100);
+    setPercent(percent);
+    console.log(percent);
   };
 
   const [dragging, setDragging] = useState(false);
@@ -86,8 +90,6 @@ const Center = () => {
   });
 
   const handleDragStart = (e, p) => {
-    console.log("drag starting");
-
     e.dataTransfer.setDragImage(dragImg, 0, 0);
 
     dragNode.current = e.target;
@@ -100,23 +102,40 @@ const Center = () => {
     }, 0);
   };
 
+  const handleUpdate = async (task) => {
+    const requestOptions = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify({
+        state: task.state,
+        title: task.title,
+        description: task.description,
+        priority: task.priority,
+      }),
+    };
+    const response = await fetch(`/api/tasks/${task.id}`, requestOptions);
+    if (!response.ok) {
+      setErrorMessage("Couldn't update");
+    } else {
+      getTasks();
+    }
+  };
+
   const handleDragEnter = (e, p) => {
     if (e.target !== dragNode.current) {
-      console.log("target different");
-      setList((oldList) => {
-        let newList = JSON.parse(JSON.stringify(oldList));
-        newList[p.grpI].items.splice(
-          p.itemI,
-          0,
-          newList[dragItem.current.grpI].items.splice(
-            dragItem.current.itemI,
-            1,
-          )[0],
-        );
-        dragItem.current = p;
-        localStorage.setItem("List", JSON.stringify(newList));
-        return newList;
-      });
+      const copyList = [...list];
+      let heldItem =
+        copyList[dragItem.current.grpI].items[dragItem.current.itemI];
+
+      if (p.grpI === 0) heldItem.state = "To do";
+      else if (p.grpI === 1) heldItem.state = "In progress";
+      else heldItem.state = "Done";
+
+      handleUpdate(heldItem);
+      dragItem.current = p;
     }
   };
 
@@ -162,136 +181,131 @@ const Center = () => {
   return (
     <>
       {loaded && tasks ? (
-        <div className="table-backgroud">
-          <div className="table-group">
-            {list.map((grp, grpI) => {
-              return (
-                <div
-                  key={grp.title}
-                  onDragEnter={
-                    dragging && !grp.items.length
-                      ? (e) => handleDragEnter(e, { grpI, itemI: 0 })
-                      : null
-                  }
-                  className="table"
-                >
-                  <div className="menu">
-                    <div className="menu-text">
-                      <header className="title">{grp.title}</header>
-                      <p className="description">
-                        {grp.items.length}{" "}
-                        {generateDescription(grp.items.length)}
-                      </p>
-                    </div>
-                    <div className="buttons">
-                      <button
-                        className="plus-button"
-                        onClick={() => openPopUp(grpI)}
-                      >
-                        <img className="plus-icon" src={PlusIcon} alt="" />
-                      </button>
-                      <button
-                        className="dots-button"
-                        onClick={() => console.log("options")}
-                      >
-                        <img className="dots-icon" src={DotsIcon} alt="" />
-                      </button>
-                    </div>
-                  </div>
-                  {grp.items.map((item, itemI) => {
-                    return (
-                      <div
-                        draggable
-                        key={item.id}
-                        onDragStart={(e) => handleDragStart(e, { grpI, itemI })}
-                        onDragEnter={
-                          dragging
-                            ? (e) => {
-                                handleDragEnter(e, { grpI, itemI });
-                              }
-                            : null
-                        }
-                        className={
-                          dragging ? getStyles({ grpI, itemI }) : "table-item"
-                        }
-                      >
-                        <div className="priority-block">
-                          <div
-                            className="item-priority"
-                            style={{ border: defineBorder(item.priority) }}
-                          >
-                            <p
-                              className="priority-text"
-                              style={{ color: defineColor(item.priority) }}
-                            >
-                              {item.priority}
-                            </p>
-                          </div>
-                        </div>
-                        <button
-                          className="item-button-block"
-                          data-bs-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                          onClick={() => console.log("more: ", grpI, itemI)}
-                        >
-                          <img className="item-button" src={DotsIcon} alt="" />
-                        </button>
-                        <div
-                          className="dropdown-menu"
-                          id="delate"
-                          aria-labelledby="dropdownMenuButton"
-                        >
-                          <button
-                            className="delate-mode-button"
-                            onClick={() => handleDelete(item, item.id)}
-                          >
-                            Delate
-                          </button>
-                        </div>
-                        <div className="item-text">
-                          <div className="item-title">{item.title}</div>
-                          <div className="item-description">
-                            {item.description}
-                          </div>
-                        </div>
+        <>
+          <Sidebar percent={percent} />
+          <div className="table-backgroud">
+            <div className="table-group">
+              {list.map((grp, grpI) => {
+                return (
+                  <div
+                    key={grp.title}
+                    onDragEnter={
+                      dragging && !grp.items.length
+                        ? (e) => handleDragEnter(e, { grpI, itemI: 0 })
+                        : null
+                    }
+                    className="table"
+                  >
+                    <div className="menu">
+                      <div className="menu-text">
+                        <header className="title">{grp.title}</header>
+                        <p className="description">
+                          {grp.items.length}{" "}
+                          {generateDescription(grp.items.length)}
+                        </p>
                       </div>
-                    );
-                  })}
-                </div>
-              );
-            })}
-          </div>
-          {popWindow ? (
-            <div>
-              <div className="page-blur" />
-              <Popup
-                token={token}
-                setErrorMessage={setErrorMessage}
-                getTasks={getTasks}
-                popChange={setPop}
-                grpI={popGroup.current}
-              />
+                      <div className="buttons">
+                        <button
+                          className="plus-button"
+                          onClick={() => openPopUp(grpI)}
+                        >
+                          <img className="plus-icon" src={PlusIcon} alt="" />
+                        </button>
+                        <button
+                          className="dots-button"
+                          onClick={() => console.log("options")}
+                        >
+                          <img className="dots-icon" src={DotsIcon} alt="" />
+                        </button>
+                      </div>
+                    </div>
+                    {grp.items.map((item, itemI) => {
+                      return (
+                        <div
+                          draggable
+                          key={item.id}
+                          onDragStart={(e) =>
+                            handleDragStart(e, { grpI, itemI })
+                          }
+                          onDragEnter={
+                            dragging
+                              ? (e) => {
+                                  handleDragEnter(e, { grpI, itemI });
+                                }
+                              : null
+                          }
+                          className={
+                            dragging ? getStyles({ grpI, itemI }) : "table-item"
+                          }
+                        >
+                          <div className="priority-block">
+                            <div
+                              className="item-priority"
+                              style={{ border: defineBorder(item.priority) }}
+                            >
+                              <p
+                                className="priority-text"
+                                style={{ color: defineColor(item.priority) }}
+                              >
+                                {item.priority}
+                              </p>
+                            </div>
+                          </div>
+                          <button
+                            className="item-button-block"
+                            data-bs-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            onClick={() => console.log("more: ", grpI, itemI)}
+                          >
+                            <img
+                              className="item-button"
+                              src={DotsIcon}
+                              alt=""
+                            />
+                          </button>
+                          <div
+                            className="dropdown-menu"
+                            id="delate"
+                            aria-labelledby="dropdownMenuButton"
+                          >
+                            <button
+                              className="delate-mode-button"
+                              onClick={() => handleDelete(item, item.id)}
+                            >
+                              Delate
+                            </button>
+                          </div>
+                          <div className="item-text">
+                            <div className="item-title">{item.title}</div>
+                            <div className="item-description">
+                              {item.description}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })}
             </div>
-          ) : (
-            ""
-          )}
-        </div>
+            {popWindow ? (
+              <div>
+                <div className="page-blur" />
+                <Popup
+                  token={token}
+                  setErrorMessage={setErrorMessage}
+                  getTasks={getTasks}
+                  popChange={setPop}
+                  grpI={popGroup.current}
+                />
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+        </>
       ) : (
-        // (<>
-        //   {tasks.map( (task)=>
-        //   (
-        //     <div key={task.id}>
-        //     <p>{task.state}</p>
-        //     <p>{task.title}</p>
-        //     <p>{task.description}</p>
-        //     <p>{task.priority}</p>
-        //     </div>
-        //   )
-        //     )
-        //   }
-        // </>
-        // )
         <p>Loading</p>
       )}
     </>

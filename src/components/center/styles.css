@@ -44,13 +44,13 @@
   font-family: "Lato";
   font-style: normal;
   font-weight: 700;
-  font-size: 160%;
+  font-size: 28px;
   color: #001134;
 }
 
 .description {
   margin-top: -3%;
-  font-size: 100%;
+  font-size: 18px;
   color: #001134;
 }
 
@@ -109,7 +109,7 @@
   font-family: "Lato";
   font-style: normal;
   font-weight: 700;
-  font-size: 100%;
+  font-size: 18px;
   position: relative;
   margin-top: -6px;
   margin-left: -3px;
@@ -137,7 +137,7 @@
   font-family: "Lato";
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 19px;
   color: #001134;
   margin-top: 2%;
@@ -149,8 +149,8 @@
   font-family: "Lato";
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
+  font-size: 17px;
+  line-height: 16px;
   color: #001134;
   margin-bottom: 2%;
 }
