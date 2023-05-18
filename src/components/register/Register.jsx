@@ -29,7 +29,11 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password === confirmationPassword && password.length > 5) {
+    if (
+      password === confirmationPassword &&
+      password.length > 5 &&
+      email.length > 0
+    ) {
       submitRegistration();
     } else {
       setErrorMessage("Ensure that passwords match and are longer than 5");

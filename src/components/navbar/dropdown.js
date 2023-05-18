@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import DropDownAtom from "./images/dropdown.png";
 import PriorityElement from "./priorityelement";
 
-const DropDown = ({ place, changeClick }) => {
+const DropDown = ({ place, changeClick, defaultPriority }) => {
   //place - either navbar or popup
 
-  const [clicked, setClicked] = useState("");
+  const [clicked, setClicked] = useState(defaultPriority);
   const placeId = place;
 
   const defineColor = () => {

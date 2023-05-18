@@ -9,9 +9,9 @@ import Popup from "./popup";
 const Center = () => {
   const [token] = useContext(UserContext);
   const [tasks, setTasks] = useState(null);
-  const [errorMessage, setErrorMessage] = useState("");
   const [loaded, setLoaded] = useState(false);
   const [percent, setPercent] = useState(0);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleDelete = async (item, id) => {
     console.log("item: ", item);
@@ -146,36 +146,31 @@ const Center = () => {
     dragNode.current = null;
   };
 
-  const getStyles = (p) => {
-    if (
-      dragItem.current.grpI === p.grpI &&
-      dragItem.current.itemI === p.itemI
-    ) {
-      return "current table-item";
-    }
-    return "table-item";
-  };
-
-  const generateDescription = (n) => {
-    if (n === 1) return "task";
-    else return "tasks";
-  };
-
   const defineColor = (s) => {
     if (s === "Low") return "#6D7C1D";
     else if (s === "Medium") return "#C25600";
     else return "#AF3218";
   };
 
-  const defineBorder = (s) => {
-    if (s === "Low") return "1px solid #6D7C1D";
-    else if (s === "Medium") return "1px solid #C25600";
-    else return "1px solid #AF3218";
-  };
+  const [editItem, setEditItem] = useState(null);
+  const [edit, setEdit] = useState(false);
 
   const openPopUp = (p) => {
     setPop(true);
     popGroup.current = p;
+  };
+
+  const closePopUp = () => {
+    setPop(false);
+    setEdit(false);
+    setEditItem(null);
+    getTasks();
+  };
+
+  const handleEdit = (item) => {
+    setEdit(true);
+    setEditItem(item);
+    setPop(true);
   };
 
   return (
@@ -201,7 +196,7 @@ const Center = () => {
                         <header className="title">{grp.title}</header>
                         <p className="description">
                           {grp.items.length}{" "}
-                          {generateDescription(grp.items.length)}
+                          {grp.items.length === 1 ? "task" : "tasks"}
                         </p>
                       </div>
                       <div className="buttons">
@@ -234,14 +229,15 @@ const Center = () => {
                                 }
                               : null
                           }
-                          className={
-                            dragging ? getStyles({ grpI, itemI }) : "table-item"
-                          }
+                          className="table-item"
                         >
                           <div className="priority-block">
                             <div
                               className="item-priority"
-                              style={{ border: defineBorder(item.priority) }}
+                              style={{
+                                border:
+                                  "1px solid " + defineColor(item.priority),
+                              }}
                             >
                               <p
                                 className="priority-text"
@@ -256,7 +252,7 @@ const Center = () => {
                             data-bs-toggle="dropdown"
                             aria-haspopup="true"
                             aria-expanded="false"
-                            onClick={() => console.log("more: ", grpI, itemI)}
+                            // onClick={() => console.log("more: ", grpI, itemI)}
                           >
                             <img
                               className="item-button"
@@ -274,6 +270,12 @@ const Center = () => {
                               onClick={() => handleDelete(item, item.id)}
                             >
                               Delate
+                            </button>
+                            <button
+                              className="edit-item-button"
+                              onClick={() => handleEdit(item)}
+                            >
+                              Edit
                             </button>
                           </div>
                           <div className="item-text">
@@ -294,10 +296,11 @@ const Center = () => {
                 <div className="page-blur" />
                 <Popup
                   token={token}
-                  setErrorMessage={setErrorMessage}
-                  getTasks={getTasks}
-                  popChange={setPop}
+                  closePopUp={closePopUp}
                   grpI={popGroup.current}
+                  edit={edit}
+                  item={editItem}
+                  handleUpdate={handleUpdate}
                 />
               </div>
             ) : (

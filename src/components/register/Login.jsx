@@ -30,7 +30,9 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    submitLogin();
+    if (password === "" || email === "")
+      setErrorMessage("You need to fill both email and password");
+    else submitLogin();
   };
 
   return (
