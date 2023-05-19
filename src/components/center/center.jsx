@@ -199,7 +199,7 @@ const Center = () => {
                           {grp.items.length === 1 ? "task" : "tasks"}
                         </p>
                       </div>
-                      <div className="buttons">
+                      <div className="menu-buttons">
                         <button
                           className="plus-button"
                           onClick={() => openPopUp(grpI)}
@@ -246,37 +246,37 @@ const Center = () => {
                                 {item.priority}
                               </p>
                             </div>
-                          </div>
-                          <button
-                            className="item-button-block"
-                            data-bs-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                            // onClick={() => console.log("more: ", grpI, itemI)}
-                          >
-                            <img
-                              className="item-button"
-                              src={DotsIcon}
-                              alt=""
-                            />
-                          </button>
-                          <div
-                            className="dropdown-menu"
-                            id="delate"
-                            aria-labelledby="dropdownMenuButton"
-                          >
                             <button
-                              className="delate-mode-button"
-                              onClick={() => handleDelete(item, item.id)}
+                              className="item-button-block"
+                              data-bs-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"
                             >
-                              Delate
+                              <img
+                                className="item-button"
+                                src={DotsIcon}
+                                alt=""
+                              />
                             </button>
-                            <button
-                              className="edit-item-button"
-                              onClick={() => handleEdit(item)}
+                            <div
+                              className="dropdown-menu"
+                              id="delate"
+                              aria-labelledby="dropdownMenuButton"
                             >
-                              Edit
-                            </button>
+                              <button
+                                className="delate-item-button"
+                                onClick={() => handleDelete(item, item.id)}
+                              >
+                                Delate
+                              </button>
+                              <br />
+                              <button
+                                className="edit-item-button"
+                                onClick={() => handleEdit(item)}
+                              >
+                                Edit
+                              </button>
+                            </div>
                           </div>
                           <div className="item-text">
                             <div className="item-title">{item.title}</div>
