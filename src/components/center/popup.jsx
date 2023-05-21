@@ -17,11 +17,6 @@ function Popup({
   const [loaded, setLoaded] = useState(false);
 
   const handleCreateTask = async (e) => {
-    if (priority === "") {
-      setError(true);
-      return;
-    }
-
     e.preventDefault();
 
     let grpName;
@@ -50,15 +45,19 @@ function Popup({
 
   const handleKey = (e) => {
     if (e.key === "Enter") {
-      if (edit) {
-        item.title = title;
-        item.description = description;
-        item.priority = priority;
-        handleUpdate(item);
+      if (priority === "") {
+        setError("You must choose priority of the task");
       } else {
-        handleCreateTask(e);
+        if (edit) {
+          item.title = title;
+          item.description = description;
+          item.priority = priority;
+          handleUpdate(item);
+        } else {
+          handleCreateTask(e);
+        }
+        closePopUp();
       }
-      closePopUp();
     } else if (e.key === "Escape") {
       closePopUp();
     }
@@ -93,7 +92,7 @@ function Popup({
             />
           </div>
           <div className="add-description">
-            <input
+            <textarea
               type="text"
               required
               placeholder="Add description..."
@@ -102,15 +101,15 @@ function Popup({
               className="input-description"
             />
           </div>
-          {error ? (
-            <>
-              <p className="error-input">
-                Please choose the priority of the task
-              </p>
-            </>
-          ) : (
-            <></>
-          )}
+          <div className="popup-error-space">
+            {error !== "" ? (
+              <>
+                <p className="error-input">{error}</p>
+              </>
+            ) : (
+              <></>
+            )}
+          </div>
         </div>
       ) : (
         loadData()

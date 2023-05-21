@@ -52,6 +52,7 @@
   background: #fcfdff;
   border: 1.5px solid #fb9ab2;
   border-radius: 8px;
+  /* background-color: black; */
 }
 
 #nb.drop-down {
@@ -140,4 +141,10 @@
   margin-left: -12%;
   margin-top: 2.5%;
   height: 60%;
+}
+
+.priority-title {
+  position: absolute;
+  top: 42%;
+  line-height: 10px;
 }

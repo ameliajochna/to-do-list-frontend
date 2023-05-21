@@ -5,6 +5,8 @@ import Sidebar from "../sidebar/sidebar";
 import DotsIcon from "./images/dots.png";
 import PlusIcon from "./images/plus.png";
 import Popup from "./popup";
+import MyProfile from "./myprofile";
+import NavBar from "../navbar/navbar";
 
 const Center = () => {
   const [token] = useContext(UserContext);
@@ -68,7 +70,9 @@ const Center = () => {
       { title: "Done", items: done },
     ];
     setList(newList);
-    const percent = Math.round((done.length / tasksCopy.length) * 100);
+    let percent;
+    if (tasksCopy.length === 0) percent = 0;
+    else percent = Math.round((done.length / tasksCopy.length) * 100);
     setPercent(percent);
     console.log(percent);
   };
@@ -173,140 +177,162 @@ const Center = () => {
     setPop(true);
   };
 
+  const [myprofile, setMyProfile] = useState(false);
+
   return (
     <>
       {loaded && tasks ? (
         <>
-          <Sidebar percent={percent} />
-          <div className="table-backgroud">
-            <div className="table-group">
-              {list.map((grp, grpI) => {
-                return (
-                  <div
-                    key={grp.title}
-                    onDragEnter={
-                      dragging && !grp.items.length
-                        ? (e) => handleDragEnter(e, { grpI, itemI: 0 })
-                        : null
-                    }
-                    className="table"
-                  >
-                    <div className="menu">
-                      <div className="menu-text">
-                        <header className="title">{grp.title}</header>
-                        <p className="description">
-                          {grp.items.length}{" "}
-                          {grp.items.length === 1 ? "task" : "tasks"}
-                        </p>
-                      </div>
-                      <div className="menu-buttons">
-                        <button
-                          className="plus-button"
-                          onClick={() => openPopUp(grpI)}
-                        >
-                          <img className="plus-icon" src={PlusIcon} alt="" />
-                        </button>
-                        <button
-                          className="dots-button"
-                          onClick={() => console.log("options")}
-                        >
-                          <img className="dots-icon" src={DotsIcon} alt="" />
-                        </button>
-                      </div>
-                    </div>
-                    {grp.items.map((item, itemI) => {
-                      return (
-                        <div
-                          draggable
-                          key={item.id}
-                          onDragStart={(e) =>
-                            handleDragStart(e, { grpI, itemI })
-                          }
-                          onDragEnter={
-                            dragging
-                              ? (e) => {
-                                  handleDragEnter(e, { grpI, itemI });
-                                }
-                              : null
-                          }
-                          className="table-item"
-                        >
-                          <div className="priority-block">
-                            <div
-                              className="item-priority"
-                              style={{
-                                border:
-                                  "1px solid " + defineColor(item.priority),
-                              }}
-                            >
-                              <p
-                                className="priority-text"
-                                style={{ color: defineColor(item.priority) }}
-                              >
-                                {item.priority}
-                              </p>
-                            </div>
+          {myprofile ? (
+            <>
+              {console.log(myprofile)}
+              <MyProfile setMyProfile={setMyProfile} />
+            </>
+          ) : (
+            <>
+              <NavBar setMyProfile={setMyProfile} />
+              <Sidebar percent={percent} setMyProfile={setMyProfile} />
+              <div className="table-backgroud">
+                <div className="table-group">
+                  {list.map((grp, grpI) => {
+                    return (
+                      <div
+                        key={grp.title}
+                        onDragEnter={
+                          dragging && !grp.items.length
+                            ? (e) => handleDragEnter(e, { grpI, itemI: 0 })
+                            : null
+                        }
+                        className="table"
+                      >
+                        <div className="menu">
+                          <div className="menu-text">
+                            <header className="title">{grp.title}</header>
+                            <p className="description">
+                              {grp.items.length}{" "}
+                              {grp.items.length === 1 ? "task" : "tasks"}
+                            </p>
+                          </div>
+                          <div className="menu-buttons">
                             <button
-                              className="item-button-block"
-                              data-bs-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"
+                              className="plus-button"
+                              onClick={() => openPopUp(grpI)}
                             >
                               <img
-                                className="item-button"
+                                className="plus-icon"
+                                src={PlusIcon}
+                                alt=""
+                              />
+                            </button>
+                            <button
+                              className="dots-button"
+                              onClick={() => console.log("options")}
+                            >
+                              <img
+                                className="dots-icon"
                                 src={DotsIcon}
                                 alt=""
                               />
                             </button>
-                            <div
-                              className="dropdown-menu"
-                              id="delate"
-                              aria-labelledby="dropdownMenuButton"
-                            >
-                              <button
-                                className="delate-item-button"
-                                onClick={() => handleDelete(item, item.id)}
-                              >
-                                Delate
-                              </button>
-                              <br />
-                              <button
-                                className="edit-item-button"
-                                onClick={() => handleEdit(item)}
-                              >
-                                Edit
-                              </button>
-                            </div>
-                          </div>
-                          <div className="item-text">
-                            <div className="item-title">{item.title}</div>
-                            <div className="item-description">
-                              {item.description}
-                            </div>
                           </div>
                         </div>
-                      );
-                    })}
+                        {grp.items.map((item, itemI) => {
+                          return (
+                            <div
+                              draggable
+                              key={item.id}
+                              onDragStart={(e) =>
+                                handleDragStart(e, { grpI, itemI })
+                              }
+                              onDragEnter={
+                                dragging
+                                  ? (e) => {
+                                      handleDragEnter(e, { grpI, itemI });
+                                    }
+                                  : null
+                              }
+                              className="table-item"
+                            >
+                              <div className="priority-block">
+                                <div
+                                  className="item-priority"
+                                  style={{
+                                    border:
+                                      "1px solid " + defineColor(item.priority),
+                                  }}
+                                >
+                                  <p
+                                    className="priority-text"
+                                    style={{
+                                      color: defineColor(item.priority),
+                                    }}
+                                  >
+                                    {item.priority}
+                                  </p>
+                                </div>
+                                <button
+                                  className="item-button-block"
+                                  data-bs-toggle="dropdown"
+                                  aria-haspopup="true"
+                                  aria-expanded="false"
+                                >
+                                  <img
+                                    className="item-button"
+                                    src={DotsIcon}
+                                    alt=""
+                                  />
+                                </button>
+                                <div
+                                  className="dropdown-menu"
+                                  id="delate"
+                                  aria-labelledby="dropdownMenuButton"
+                                >
+                                  <button
+                                    className="delate-item-button"
+                                    onClick={() => handleDelete(item, item.id)}
+                                  >
+                                    Delate
+                                  </button>
+                                  <br />
+                                  <button
+                                    className="edit-item-button"
+                                    onClick={() => handleEdit(item)}
+                                  >
+                                    Edit
+                                  </button>
+                                </div>
+                              </div>
+                              <div className="item-text">
+                                <div className="item-title">{item.title}</div>
+                                <div className="item-description">
+                                  {item.description}
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    );
+                  })}
+                </div>
+                {popWindow ? (
+                  <div>
+                    <div className="page-blur" />
+                    <Popup
+                      token={token}
+                      closePopUp={closePopUp}
+                      grpI={popGroup.current}
+                      edit={edit}
+                      item={editItem}
+                      handleUpdate={handleUpdate}
+                    />
                   </div>
-                );
-              })}
-            </div>
-            {popWindow ? (
-              <div>
-                <div className="page-blur" />
-                <Popup
-                  token={token}
-                  closePopUp={closePopUp}
-                  grpI={popGroup.current}
-                  edit={edit}
-                  item={editItem}
-                  handleUpdate={handleUpdate}
-                />
+                ) : (
+                  <></>
+                )}
               </div>
-            ) : (
-              ""
-            )}
-          </div>
+            </>
+          )}
         </>
       ) : (
         <p>Loading</p>

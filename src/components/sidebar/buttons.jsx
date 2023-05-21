@@ -4,7 +4,7 @@ import LogOut from "./images/logout.png";
 import ProfilePicture from "./images/profilepicture.png";
 import { UserContext } from "../../context/UserContext";
 
-const Buttons = () => {
+const Buttons = ({ setMyprofile }) => {
   const [token, setToken] = useContext(UserContext);
 
   const handleLogOut = () => {
@@ -18,10 +18,7 @@ const Buttons = () => {
         <p className="log-out-text">Log Out</p>
       </button>
 
-      <button
-        className="transparent-button"
-        onClick={() => console.log("MOJ PROFIL")}
-      >
+      <button className="transparent-button" onClick={() => setMyprofile(true)}>
         <img className="profile-pink-dot" src={PinkVector} alt="" />
         <img className="my-profile-icon" src={ProfilePicture} alt="" />
         <p className="my-profile-text">My Profile</p>
