@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
-import Register from "./components/register/Register";
-import Login from "./components/register/Login";
+import React, { useContext } from "react";
+import Register from "./components/register/register";
+import Login from "./components/register/login";
 import Center from "./components/center/center";
 import { UserContext } from "./context/UserContext";
 

@@ -186,7 +186,7 @@ const Center = () => {
           {myprofile ? (
             <>
               {console.log(myprofile)}
-              <MyProfile setMyProfile={setMyProfile} />
+              <MyProfile token={token} setMyProfile={setMyProfile} />
             </>
           ) : (
             <>
