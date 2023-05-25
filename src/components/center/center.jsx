@@ -47,7 +47,6 @@ const Center = () => {
     } else {
       setTasks(data);
       setLoaded(true);
-      console.log("data: ", data);
       getList(data);
     }
   };
@@ -74,7 +73,6 @@ const Center = () => {
     if (tasksCopy.length === 0) percent = 0;
     else percent = Math.round((done.length / tasksCopy.length) * 100);
     setPercent(percent);
-    console.log(percent);
   };
 
   const [dragging, setDragging] = useState(false);
@@ -184,13 +182,11 @@ const Center = () => {
       {loaded && tasks ? (
         <>
           {myprofile ? (
-            <>
-              {console.log(myprofile)}
-              <MyProfile token={token} setMyProfile={setMyProfile} />
-            </>
+            <MyProfile token={token} setMyProfile={setMyProfile} />
           ) : (
             <>
-              <NavBar setMyProfile={setMyProfile} />
+              {console.log(tasks)}
+              <NavBar tasks={tasks} />
               <Sidebar percent={percent} setMyProfile={setMyProfile} />
               <div className="table-backgroud">
                 <div className="table-group">
