@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import Login from "./Login";
 import Register from "./Register";
-import Logo from "../sidebar/Logo";
 import "./styles.css";
 import Screenshot from "./images/screenshot.png";
 import BigEllipse from "./images/bigellipse.png";
 import SmallEllipse from "./images/smallellipse.png";
+import Logo from "./images/logo.png";
 
 const MainPage = () => {
-  const [register, onRegister] = useState(false);
+  const [register, setRegister] = useState(false);
   return (
     <div className="front-page">
       <div className="demo">
@@ -20,8 +20,15 @@ const MainPage = () => {
         <img src={SmallEllipse} alt="" className="small-ellipse-demo" />
       </div>
       <div className="front-login">
-        <Logo />
-        {register ? <Register /> : <Login />}
+        <span>
+          <img src={Logo} alt="" className="login-logo" />
+          {/* 3 kropki */}
+        </span>
+        {register ? (
+          <Register setRegister={setRegister} />
+        ) : (
+          <Login setRegister={setRegister} />
+        )}
       </div>
     </div>
   );

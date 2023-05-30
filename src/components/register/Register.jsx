@@ -2,9 +2,11 @@ import React, { useContext, useState } from "react";
 
 import { UserContext } from "../../context/UserContext";
 import ErrorMessage from "./ErrorMessage";
+import WhiteLogIn from "./images/whitelogin.png";
 
-const Register = () => {
+const Register = ({ setRegister }) => {
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmationPassword, setConfirmationPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -31,61 +33,82 @@ const Register = () => {
     e.preventDefault();
     if (
       password === confirmationPassword &&
-      password.length > 5 &&
+      password.length > 7 &&
       email.length > 0
     ) {
       submitRegistration();
     } else {
-      setErrorMessage("Ensure that passwords match and are longer than 5");
+      setErrorMessage(
+        "Ensure that passwords match and are at least 8 digits long",
+      );
     }
   };
 
   return (
-    <div className="column">
-      <form className="box" onSubmit={handleSubmit}>
-        <h1 className="title-register">Register</h1>
+    <div className="register-form">
+      <form>
+        <h3 className="title-login">Complete the form below to get started</h3>
+
         <div className="field">
-          <label className="registration-label">Email</label>
-          <div className="control">
+          <label className="login-label">Name *</label>
+          <div className="login-field">
+            <input
+              type="name"
+              placeholder="E.g. Emilie"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="login-input"
+            />
+          </div>
+        </div>
+
+        <div className="field">
+          <label className="login-label">Email address *</label>
+          <div className="login-field">
             <input
               type="email"
-              placeholder="Enter email"
+              placeholder="E.g. productivity@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="registration-input"
+              className="login-input"
             />
           </div>
         </div>
 
         <div className="field">
-          <label className="registration-label">Password</label>
-          <div className="control">
+          <label className="login-label">Password *</label>
+          <div className="login-field">
             <input
               type="password"
-              placeholder="Enter Password"
+              placeholder="Enter at least 8 digits"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="registration-input"
+              className="login-input"
             />
           </div>
         </div>
-
-        <div className="field">
-          <label className="registration-label">Confirmation Password</label>
-          <div className="control">
-            <input
-              type="password"
-              placeholder="Enter Password"
-              value={confirmationPassword}
-              onChange={(e) => setConfirmationPassword(e.target.value)}
-              className="registration-input"
-            />
-          </div>
-        </div>
+        <label className="terms">
+          <input type="checkbox" className="terms-checkbox" />
+          <span class="checkmark" />
+          {/* I agree to <button>Terms of Service</button> and <button>Privacy Policy.</button> */}
+        </label>
         <ErrorMessage message={errorMessage} />
         <br />
-        <button className="submit-register">Register</button>
+        <button className="submit-login" onClick={(e) => handleSubmit(e)}>
+          Sign in
+          {/* <img src={BlueLogIn} alt=""/> */}
+          <img src={WhiteLogIn} alt="" />
+        </button>
       </form>
+      <p className="no-account-info">
+        Do you already have an account?
+        <button
+          className="no-account-register"
+          onClick={() => setRegister(false)}
+        >
+          Log in
+        </button>
+      </p>
     </div>
   );
 };

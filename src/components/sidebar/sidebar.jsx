@@ -11,7 +11,9 @@ const Sidebar = ({ percent, setMyProfile }) => {
         <Logo />
       </div>
       <div className="side-bar">
-        <p className="my-progress">My progress</p>
+        <div>
+          <p className="my-progress">My progress</p>
+        </div>
         <ProgressBar percent={percent} />
         <Buttons setMyprofile={setMyProfile} />
       </div>

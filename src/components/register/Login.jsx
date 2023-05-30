@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
-
 import ErrorMessage from "./ErrorMessage";
 import { UserContext } from "../../context/UserContext";
+import BlueLogIn from "./images/bluelogin.png";
+import WhiteLogIn from "./images/whitelogin.png";
 
 const Login = ({ setRegister }) => {
   const [email, setEmail] = useState("");
@@ -36,15 +37,15 @@ const Login = ({ setRegister }) => {
   };
 
   return (
-    <div className="column">
-      <form className="box" onSubmit={handleSubmit}>
-        <h1 className="title-login">Login</h1>
+    <div className="login-form">
+      <form onSubmit={handleSubmit}>
+        <h3 className="title-login">Welcome back and be productive!</h3>
         <div className="field">
-          <label className="login-label">Email</label>
-          <div className="control">
+          <label className="login-label">Email address *</label>
+          <div className="login-field">
             <input
               type="email"
-              placeholder="Enter email"
+              placeholder="E.g. productivity@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="login-input"
@@ -53,11 +54,11 @@ const Login = ({ setRegister }) => {
         </div>
 
         <div className="field">
-          <label className="login-label">Password</label>
-          <div className="control">
+          <label className="login-label">Password *</label>
+          <div className="login-field">
             <input
               type="password"
-              placeholder="Enter Password"
+              placeholder="Enter at least 8 digits"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="login-input"
@@ -67,8 +68,21 @@ const Login = ({ setRegister }) => {
 
         <ErrorMessage message={errorMessage} />
         <br />
-        <button className="submit-login">Login</button>
+        <button className="submit-login">
+          Log in
+          {/* <img src={BlueLogIn} alt=""/> */}
+          <img src={WhiteLogIn} alt="" />
+        </button>
       </form>
+      <p className="no-account-info">
+        Don't have an account?
+        <button
+          className="no-account-register"
+          onClick={() => setRegister(true)}
+        >
+          Register
+        </button>
+      </p>
     </div>
   );
 };
