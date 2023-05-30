@@ -3,7 +3,7 @@ import React, { useState, useContext } from "react";
 import ErrorMessage from "./ErrorMessage";
 import { UserContext } from "../../context/UserContext";
 
-const Login = () => {
+const Login = ({ setRegister }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");

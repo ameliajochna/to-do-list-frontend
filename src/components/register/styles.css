@@ -1,0 +1,58 @@
+.front-page {
+  position: absolute;
+  display: flex;
+  padding: 48px 32px;
+  height: 100%;
+  width: 100%;
+}
+
+.demo {
+  position: relative;
+  background: linear-gradient(225.16deg, #ff4f7b -9.58%, #1b3d84 36.66%);
+  border-radius: 12px;
+  width: 50%;
+  padding: 3% 2%;
+}
+
+.front-login {
+  width: 50%;
+}
+
+.motto {
+  margin: auto;
+  width: 60%;
+
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.5vw;
+  line-height: 100%;
+  text-align: center;
+  color: #ffffff;
+}
+
+.demo-screenshot {
+  display: block;
+  margin: auto;
+
+  width: 0%;
+  height: 55%;
+  /* position: absolute;
+    top:30%;
+    left: 0;
+    right: 0; */
+  margin: auto;
+}
+
+.small-ellipse-demo {
+  position: absolute;
+  left: 13px;
+  bottom: 80px;
+}
+
+.big-ellipse-demo {
+  display: block;
+  position: relative;
+  margin-bottom: 100px;
+  /* transform: rotate(30deg); */
+}

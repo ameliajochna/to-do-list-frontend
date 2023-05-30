@@ -1,24 +1,13 @@
-import React, { useContext } from "react";
-import Register from "./components/register/register";
-import Login from "./components/register/login";
+import React, { useContext, useState } from "react";
+import MainPage from "./components/register/MainPage";
 import Center from "./components/center/center";
 import { UserContext } from "./context/UserContext";
 
 const App = () => {
   const [token, setToken] = useContext(UserContext);
+  const [register, setRegister] = useState(false);
 
-  return (
-    <React.Fragment>
-      {token ? (
-        <Center />
-      ) : (
-        <>
-          <Register />
-          <Login />
-        </>
-      )}
-    </React.Fragment>
-  );
+  return <React.Fragment>{token ? <Center /> : <MainPage />}</React.Fragment>;
 };
 
 export default App;

@@ -6,7 +6,7 @@
   width: 86%;
   height: 10%;
   left: 14%;
-  background: #c8d7f5;
+  background: #1b3d84;
 }
 
 .my-task-text {
@@ -18,10 +18,10 @@
   font-weight: 600;
   font-size: 32px;
   display: flex;
-  color: #001134;
+  color: #fcfdff;
 }
 
-.searchbar {
+.search-bar {
   box-sizing: border-box;
   position: relative;
   width: 100%;
@@ -31,6 +31,7 @@
   border: 1.5px solid #fb9ab2;
   /* padding: 6px 16px; */
   border-radius: 8px;
+  padding: 8px 16px;
 }
 
 .searchbar::placeholder {

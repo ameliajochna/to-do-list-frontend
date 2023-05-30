@@ -37,8 +37,8 @@
 
 .brand-name {
   position: absolute;
-  left: 27.5%;
-  top: 33%;
+  left: 66px;
+  top: 30px;
 
   font-family: "Lato";
   font-style: normal;
@@ -63,8 +63,8 @@
   width: 52.96px;
   height: 45.9px;
   position: absolute;
-  left: 26.5%;
-  top: 26%;
+  left: 64px;
+  top: 22px;
   transform: rotate(22.41deg);
 }
 
@@ -72,8 +72,8 @@
   width: 55px;
   height: 50px;
   position: absolute;
-  left: 26.5%;
-  top: 24%;
+  left: 61px;
+  top: 20px;
   transform: rotate(10deg);
 }
 
@@ -88,7 +88,7 @@
   background: linear-gradient(
     90deg,
     #1b3d84 0%,
-    #fcb2c7 91.07%,
+    #ff4f7b 91.07%,
     #a8002f 181.19%
   ) !important;
 }
@@ -160,7 +160,8 @@
 }
 
 .profile-pink-dot {
-  margin-right: 5%;
+  margin-right: 40%;
+  margin-left: -7%;
 }
 
 .my-profile-text {
@@ -172,4 +173,10 @@
   font-weight: 600;
   font-size: 130%;
   color: #1b3d84;
+}
+
+.red-line {
+  background-color: red;
+  position: absolute;
+  height: 100%;
 }
