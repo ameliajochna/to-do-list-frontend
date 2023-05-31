@@ -38,42 +38,39 @@ const Login = ({ setRegister }) => {
 
   return (
     <div className="login-form">
-      <form onSubmit={handleSubmit}>
-        <h3 className="title-login">Welcome back and be productive!</h3>
-        <div className="field">
-          <label className="login-label">Email address *</label>
-          <div className="login-field">
-            <input
-              type="email"
-              placeholder="E.g. productivity@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="login-input"
-            />
-          </div>
+      <h3 className="title-login">Welcome back and be productive!</h3>
+      <div className="field">
+        <label className="login-label">Email address *</label>
+        <div className="login-field">
+          <input
+            type="email"
+            placeholder="E.g. productivity@email.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="login-input"
+          />
         </div>
+      </div>
 
-        <div className="field">
-          <label className="login-label">Password *</label>
-          <div className="login-field">
-            <input
-              type="password"
-              placeholder="Enter at least 8 digits"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="login-input"
-            />
-          </div>
+      <div className="field">
+        <label className="login-label">Password *</label>
+        <div className="login-field">
+          <input
+            type="password"
+            placeholder="Enter at least 8 digits"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="login-input"
+          />
         </div>
+      </div>
 
-        <ErrorMessage message={errorMessage} />
-        <br />
-        <button className="submit-login">
-          Log in
-          {/* <img src={BlueLogIn} alt=""/> */}
-          <img src={WhiteLogIn} alt="" />
-        </button>
-      </form>
+      <ErrorMessage message={errorMessage} />
+      <br />
+      <button className="submit-login" onClick={(e) => handleSubmit(e)}>
+        Log in
+        <span className="login-icon"></span>
+      </button>
       <p className="no-account-info">
         Don't have an account?
         <button

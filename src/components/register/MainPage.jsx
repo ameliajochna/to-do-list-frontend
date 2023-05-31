@@ -9,6 +9,7 @@ import Logo from "./images/logo.png";
 
 const MainPage = () => {
   const [register, setRegister] = useState(false);
+
   return (
     <div className="front-page">
       <div className="demo">
