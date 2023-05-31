@@ -9,6 +9,7 @@ const Login = ({ setRegister }) => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [, setToken] = useContext(UserContext);
+  const [passwordType, setPasswordType] = useState("password");
 
   const submitLogin = async () => {
     const requestOptions = {
@@ -36,6 +37,11 @@ const Login = ({ setRegister }) => {
     else submitLogin();
   };
 
+  const changePasswordType = () => {
+    if (passwordType === "password") setPasswordType("text");
+    else setPasswordType("password");
+  };
+
   return (
     <div className="login-form">
       <h3 className="title-login">Welcome back and be productive!</h3>
@@ -56,11 +62,15 @@ const Login = ({ setRegister }) => {
         <label className="login-label">Password *</label>
         <div className="login-field">
           <input
-            type="password"
+            type={passwordType}
             placeholder="Enter at least 8 digits"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="login-input"
+          />
+          <button
+            className="show-password"
+            onClick={() => changePasswordType()}
           />
         </div>
       </div>

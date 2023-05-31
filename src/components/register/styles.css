@@ -3,9 +3,8 @@
   display: flex;
   padding: 48px 32px;
   height: 100%;
-  min-height: 800px;
+  min-height: 600px;
   width: 100%;
-  gap: 40px;
 }
 
 .demo {
@@ -18,18 +17,39 @@
 }
 
 .front-login {
+  margin-left: 40px;
   width: 50%;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1200px) {
+  .front-page {
+    padding: 0 0;
+  }
   .demo {
-    width: 100%;
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 96%;
     position: absolute;
     top: 850px;
   }
   .front-login {
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
     width: 100%;
     height: 800px;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .login-logo {
+    width: 30%;
+    height: auto;
+  }
+
+  .login-ellipse {
+    width: 20%;
   }
 }
 
@@ -74,6 +94,12 @@
   max-width: 500px;
 }
 
+.login-ellipse {
+  float: right;
+  margin-right: 32px;
+  margin-top: -20px;
+}
+
 .title-login {
   font-family: "Lato";
   font-style: normal;
@@ -91,6 +117,7 @@
   border: 1px solid #1b3d84;
   border-radius: 8px;
   height: 52px;
+  position: relative;
 }
 
 .login-label {
@@ -263,4 +290,14 @@
   display: flex;
   align-items: center;
   color: #001134;
+}
+
+.show-password {
+  position: absolute;
+  border: none;
+  height: 20px;
+  width: 25px;
+  right: 17px;
+  top: 12px;
+  background: url("./images/eye.png");
 }

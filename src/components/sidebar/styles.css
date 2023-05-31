@@ -5,7 +5,9 @@
 
   position: absolute;
   width: 14%;
+  min-height: 100px;
   height: 10%;
+  min-width: 170px;
 
   background: #fcfdff;
 }
@@ -16,7 +18,9 @@
   align-items: center;
   text-align: center;
   position: absolute;
+  min-width: 170px;
   width: 14%;
+  min-height: 700px;
   height: 90%;
   top: 10%;
 
@@ -179,4 +183,11 @@
   background-color: red;
   position: absolute;
   height: 100%;
+}
+
+.sidebar-logo {
+  background: url("./images/logo.png");
+  margin: auto;
+  width: 130px;
+  height: 62px;
 }

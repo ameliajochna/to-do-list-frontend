@@ -6,6 +6,7 @@ import Screenshot from "./images/screenshot.png";
 import BigEllipse from "./images/bigellipse.png";
 import SmallEllipse from "./images/smallellipse.png";
 import Logo from "./images/logo.png";
+import Ellipses from "./images/ellipses.png";
 
 const MainPage = () => {
   const [register, setRegister] = useState(false);
@@ -23,7 +24,7 @@ const MainPage = () => {
       <div className="front-login">
         <span>
           <img src={Logo} alt="" className="login-logo" />
-          {/* 3 kropki */}
+          <img src={Ellipses} alt="" className="login-ellipse" />
         </span>
         {register ? (
           <Register setRegister={setRegister} />

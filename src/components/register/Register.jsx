@@ -11,6 +11,7 @@ const Register = ({ setRegister }) => {
   const [checkbox, setCheckbox] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [, setToken] = useContext(UserContext);
+  const [passwordType, setPasswordType] = useState("password");
 
   const submitRegistration = async () => {
     const requestOptions = {
@@ -38,6 +39,11 @@ const Register = ({ setRegister }) => {
     } else {
       submitRegistration();
     }
+  };
+
+  const changePasswordType = () => {
+    if (passwordType === "password") setPasswordType("text");
+    else setPasswordType("password");
   };
 
   return (
@@ -76,11 +82,15 @@ const Register = ({ setRegister }) => {
         <label className="login-label">Password *</label>
         <div className="login-field">
           <input
-            type="password"
+            type={passwordType}
             placeholder="Enter at least 8 digits"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="login-input"
+          />
+          <button
+            className="show-password"
+            onClick={() => changePasswordType()}
           />
         </div>
       </div>
