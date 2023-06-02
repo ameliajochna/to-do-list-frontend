@@ -10,7 +10,10 @@ const ProgressBar = ({ percent }) => {
 
   return (
     <div className="progress-block">
-      <div className="progress" style={{ height: "25px" }}>
+      <div
+        className="progress"
+        style={{ height: "25px", borderRadius: "40px" }}
+      >
         <div className="progress-bar" style={{ width: percent + "%" }} />
       </div>
       <div>
@@ -20,7 +23,7 @@ const ProgressBar = ({ percent }) => {
           alt=""
           style={{ marginTop: vertPosition() }}
         />
-        <p className="percent-text" style={{ marginTop: "-35px" }}>
+        <p className="percent-text" style={{ marginTop: "-40px" }}>
           {percent + "%"}
         </p>
       </div>

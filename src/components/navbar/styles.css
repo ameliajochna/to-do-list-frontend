@@ -153,3 +153,17 @@
   top: 42%;
   line-height: 10px;
 }
+
+@media only screen and (min-width: 1250px) {
+  .open-sidebar {
+    display: none;
+  }
+}
+@media only screen and (max-width: 1250px) {
+  .open-sidebar {
+    margin-left: -2px;
+    width: 70px;
+    height: 100px;
+    background: #fcfdff;
+  }
+}
