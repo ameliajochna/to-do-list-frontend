@@ -3,7 +3,7 @@ import "./styles.css";
 import SearchBar from "./searchbar";
 import DropDown from "./dropdown";
 
-const NavBar = ({ tasks, setSideBar, sideBar }) => {
+const NavBar = ({ tasks }) => {
   const [priority, setPriority] = useState("");
 
   return (

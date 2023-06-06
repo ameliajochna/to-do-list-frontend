@@ -14,7 +14,7 @@ const SearchBar = () => {
         onChange={(e) => setName(e.target.value)}
         className="search-bar"
       />
-      <img className="search-atom" src={SearchAtom} alt="" />
+      <div className="search-atom" />
     </div>
   );
 };

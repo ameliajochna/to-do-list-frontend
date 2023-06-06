@@ -232,6 +232,7 @@
   position: absolute;
   background-color: #ff4f7b;
   left: max(calc(13.95%), 198px);
+  min-height: 800px;
   height: 100%;
   width: 2px;
 }
@@ -263,6 +264,7 @@
   .red-line {
     left: 198px;
     height: 100%;
+    min-height: 800px;
     width: 2px;
   }
 }

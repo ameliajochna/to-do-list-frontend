@@ -4,7 +4,7 @@ import blueVector from "./images/bluedot.png";
 const ProgressBar = ({ percent }) => {
   const vertPosition = () => {
     const height = parseInt(percent, 10);
-    const topvalue = 38 - percent;
+    const topvalue = 40 - percent;
     return topvalue + "%";
   };
 
