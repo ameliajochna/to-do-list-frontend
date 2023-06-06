@@ -1,3 +1,9 @@
+.sidebar-component {
+  position: absolute;
+  height: 100%;
+  min-height: 800px;
+}
+
 .logo-corner {
   display: flex;
   flex-direction: row;
@@ -7,7 +13,7 @@
   width: 14%;
   min-height: 100px;
   height: 10%;
-  min-width: 170px;
+  min-width: 200px;
 
   background: #fcfdff;
 }
@@ -18,17 +24,17 @@
   align-items: center;
   text-align: center;
   position: absolute;
-  min-width: 170px;
+  min-width: 200px;
   width: 14%;
   min-height: 700px;
   height: 90%;
   top: max(100px, 10%);
-
+  transition: left 0.3 ease;
   background: #fcfdff;
 }
 
 .my-progress {
-  position: absolute;
+  position: relative;
   top: 8%;
 
   font-family: "Lato", sans-serif;
@@ -84,9 +90,16 @@
 .progress {
   position: relative;
   width: 45vh;
-  top: 40vh;
   transform: rotate(-90deg);
   border-radius: 40px;
+  margin-top: 75%;
+}
+
+.percent-dot-block {
+  position: relative;
+  left: 42.5%;
+  width: 60px;
+  height: 60px;
 }
 
 .percent-dot {
@@ -105,6 +118,7 @@
 }
 
 .progress-block {
+  min-height: 300px;
   height: 90%;
 }
 
@@ -207,12 +221,6 @@
   left: 40%;
 }
 
-.red-line {
-  background-color: red;
-  position: absolute;
-  height: 100%;
-}
-
 .sidebar-logo {
   background: url("./images/logo.png");
   margin: auto;
@@ -222,8 +230,39 @@
 
 .red-line {
   position: absolute;
-  background-color: red;
-  left: 13.95%;
+  background-color: #ff4f7b;
+  left: max(calc(13.95%), 198px);
   height: 100%;
-  width: 0.05%;
+  width: 2px;
+}
+
+.close-sidebar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  background-color: red;
+}
+
+@media only screen and (min-width: 1250px) {
+  .open-sidebar {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  .open-sidebar {
+    margin-left: -2px;
+    width: 70px;
+    height: 100px;
+    background: #fcfdff;
+    border: none;
+  }
+
+  .red-line {
+    left: 198px;
+    height: 100%;
+    width: 2px;
+  }
 }

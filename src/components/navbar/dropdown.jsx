@@ -1,34 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import DropDownAtom from "./images/dropdown.png";
+import DropUpAtom from "./images/dropup.png";
 import PriorityElement from "./priorityelement";
 
 const DropDown = ({ place, changeClick, defaultPriority }) => {
-  //place - either navbar or popup
-
   const [clicked, setClicked] = useState(defaultPriority);
-  const placeId = place;
+  const [status, setStatus] = useState(false);
+  const dropdownRef = useRef(null);
 
-  const defineColor = () => {
-    if (clicked === "Low") return "#6D7C1D";
-    else if (clicked === "Medium") return "#C25600";
-    else if (clicked === "High") return "#AF3218";
-    else return "#1b3d84";
+  const toggleDropDown = () => {
+    setStatus(!status);
   };
 
+  const handleOptionClick = () => {
+    setStatus(false); // Close the dropdown after an option is clicked
+  };
+
+  const handleDropdownClose = () => {
+    setStatus(false); // Update the status when the dropdown closes
+  };
+
+  useEffect(() => {
+    const dropdownElement = dropdownRef.current;
+    dropdownElement.addEventListener("hidden.bs.dropdown", handleDropdownClose);
+
+    return () => {
+      dropdownElement.removeEventListener(
+        "hidden.bs.dropdown",
+        handleDropdownClose,
+      );
+    };
+  }, []);
+
   return (
-    <div className="drop-down" id={placeId}>
+    <div
+      className="drop-down"
+      id={place}
+      ref={dropdownRef}
+      style={{ border: clicked ? "2px solid #FF4F7B" : "2px solid #C8D7F5" }}
+    >
       <button
         className="dropdown-button"
         type="button"
         id="dropdownMenuButton"
         data-bs-toggle="dropdown"
         aria-haspopup="true"
-        aria-expanded="false"
+        aria-expanded={status ? "true" : "false"}
+        onClick={toggleDropDown}
       >
-        <p className="priority-title" style={{ color: defineColor() }}>
-          Priority {clicked}
-        </p>
-        <img className="dropdown-atom" src={DropDownAtom} alt="" />
+        <p className="priority-title">Priority {clicked}</p>
+        <img
+          className="dropdown-atom"
+          src={status ? DropUpAtom : DropDownAtom}
+          alt=""
+        />
       </button>
       <div
         className="dropdown-menu"
@@ -36,19 +61,25 @@ const DropDown = ({ place, changeClick, defaultPriority }) => {
         aria-labelledby="dropdownMenuButton"
       >
         <PriorityElement
-          data={["Low", 1]}
+          name="Low"
           setClick={setClicked}
           changeClick={changeClick}
+          onClick={handleOptionClick}
+          clicked={clicked}
         />
         <PriorityElement
-          data={["Medium", 2]}
+          name="Medium"
           setClick={setClicked}
           changeClick={changeClick}
+          onClick={handleOptionClick}
+          clicked={clicked}
         />
         <PriorityElement
-          data={["High", 3]}
+          name="High"
           setClick={setClicked}
           changeClick={changeClick}
+          onClick={handleOptionClick}
+          clicked={clicked}
         />
       </div>
     </div>

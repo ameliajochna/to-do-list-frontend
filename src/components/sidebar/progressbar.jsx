@@ -4,7 +4,7 @@ import blueVector from "./images/bluedot.png";
 const ProgressBar = ({ percent }) => {
   const vertPosition = () => {
     const height = parseInt(percent, 10);
-    const topvalue = 130 - height;
+    const topvalue = 38 - percent;
     return topvalue + "%";
   };
 
@@ -12,17 +12,12 @@ const ProgressBar = ({ percent }) => {
     <div className="progress-block">
       <div
         className="progress"
-        style={{ height: "25px", borderRadius: "40px" }}
+        style={{ height: "25px", borderRadius: "40px", minWidth: "400px" }}
       >
         <div className="progress-bar" style={{ width: percent + "%" }} />
       </div>
-      <div>
-        <img
-          className="percent-dot"
-          src={blueVector}
-          alt=""
-          style={{ marginTop: vertPosition() }}
-        />
+      <div className="percent-dot-block" style={{ marginTop: vertPosition() }}>
+        <img className="percent-dot" src={blueVector} alt="" />
         <p className="percent-text" style={{ marginTop: "-40px" }}>
           {percent + "%"}
         </p>

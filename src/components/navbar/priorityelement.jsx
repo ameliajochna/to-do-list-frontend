@@ -1,28 +1,20 @@
 import React, { useState } from "react";
 
-const PriorityElement = ({ data, setClick, changeClick }) => {
-  const name = data[0];
-
-  const defineColor = () => {
-    if (name === "Low") return "#6D7C1D";
-    else if (name === "Medium") return "#C25600";
-    else return "#AF3218";
-  };
-
+const PriorityElement = ({ name, setClick, changeClick, clicked }) => {
   const handleClick = () => {
-    console.log(name);
-    changeClick(name);
-    setClick(name);
+    if (name === clicked) {
+      changeClick("");
+      setClick("");
+    } else {
+      changeClick(name);
+      setClick(name);
+    }
   };
 
   return (
     <>
-      <button
-        className="type-priority"
-        style={{ color: defineColor() }}
-        onClick={() => handleClick()}
-      >
-        <p className="text-drop-menu">{name}</p>
+      <button className="type-priority" onClick={() => handleClick()} id={name}>
+        <p className="text-drop-menu">{clicked === name ? "None" : name}</p>
       </button>
       <br />
     </>

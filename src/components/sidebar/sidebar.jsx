@@ -1,35 +1,67 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
-import { useMediaQuery } from "react-responsive";
 import ProgressBar from "./progressbar";
 import PinkVector from "./images/pinkdot.png";
 import ProfilePicture from "./images/profilepicture.png";
+import StripesSidebar from "./images/stripessidebar.png";
 import "./styles.css";
 
-const Sidebar = ({ percent, setMyProfile, sideBar }) => {
+const Sidebar = ({ percent, setMyProfile }) => {
   const [token, setToken] = useContext(UserContext);
-
-  const isDesktopOrLaptop = useMediaQuery({
-    query: "(min-width: 1250px)",
-  });
+  const [sideBar, setSidebar] = useState(true);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const handleLogOut = () => {
     setToken(null);
   };
 
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  const handleToggleSidebar = () => {
+    setSidebar(!sideBar);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    setSidebar(windowWidth >= 1250);
+  }, [windowWidth]);
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+  }, []); // Initialize windowWidth on component mount
+
   return (
+    // <div className="sidebar-component">
     <>
-      {sideBar || isDesktopOrLaptop ? (
+      {windowWidth <= 1250 && !sideBar && (
+        <button className="open-sidebar" onClick={handleToggleSidebar}>
+          <img className="open-sidebar-image" src={StripesSidebar} alt="" />
+          <div className="navbar-red-line" />
+        </button>
+      )}
+
+      {(sideBar || windowWidth >= 1250) && (
         <>
           <div className="logo-corner">
             <div className="sidebar-logo" />
+            {windowWidth <= 1250 && (
+              <button className="close-sidebar" onClick={handleToggleSidebar} />
+            )}
           </div>
           <div className="side-bar">
             <p className="my-progress">My progress</p>
             <ProgressBar percent={percent} />
 
             <div className="buttons-group">
-              <button className="log-out-button" onClick={() => handleLogOut()}>
+              <button className="log-out-button" onClick={handleLogOut}>
                 <div className="log-out-icon" />
                 <p className="log-out-text">Log Out</p>
               </button>
@@ -46,10 +78,9 @@ const Sidebar = ({ percent, setMyProfile, sideBar }) => {
           </div>
           <div className="red-line" />
         </>
-      ) : (
-        <></>
       )}
     </>
+    // </div>
   );
 };
 

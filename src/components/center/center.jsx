@@ -177,8 +177,6 @@ const Center = () => {
 
   const [myprofile, setMyProfile] = useState(false);
 
-  const [sideBar, setSideBar] = useState(true);
-
   return (
     <>
       {loaded && tasks ? (
@@ -187,16 +185,7 @@ const Center = () => {
             <MyProfile token={token} setMyProfile={setMyProfile} />
           ) : (
             <>
-              <NavBar tasks={tasks} setSideBar={setSideBar} sideBar={sideBar} />
-              {sideBar ? (
-                <Sidebar
-                  percent={percent}
-                  setMyProfile={setMyProfile}
-                  sideBar={sideBar}
-                />
-              ) : (
-                <></>
-              )}
+              <NavBar tasks={tasks} />
               <div className="table-backgroud">
                 <div className="table-group">
                   {list.map((grp, grpI) => {
@@ -336,6 +325,7 @@ const Center = () => {
                   <></>
                 )}
               </div>
+              <Sidebar percent={percent} />
             </>
           )}
         </>

@@ -4,9 +4,26 @@
   align-items: center;
   position: absolute;
   width: 86%;
+  min-height: 96px;
   height: 10%;
   left: 14%;
   background: #1b3d84;
+}
+
+@media only screen and (max-width: 1250px) {
+  .navigation-bar {
+    width: calc(98%);
+    left: 70px;
+  }
+  .navbar-red-line {
+    position: absolute;
+    left: 70px;
+    top: 0;
+    width: 3px;
+    min-height: 96px;
+    height: 10%;
+    background-color: #ff4f7b;
+  }
 }
 
 .my-task-text {
@@ -28,8 +45,7 @@
   height: 100%;
   background: #fcfdff;
   border: none;
-  border: 1.5px solid #fb9ab2;
-  /* padding: 6px 16px; */
+  border: 2px solid #c8d7f5;
   border-radius: 8px;
   padding: 8px 16px;
 }
@@ -52,9 +68,14 @@
   justify-content: center;
   align-items: flex-start;
   background: #fcfdff;
-  border: 1.5px solid #fb9ab2;
+  border: 2px solid #c8d7f5;
   border-radius: 8px;
-  /* background-color: black; */
+}
+
+.drop-down:focus-within {
+  border-color: #c8d7f5;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 #nb.drop-down {
@@ -101,8 +122,15 @@
 
 #priority.dropdown-menu {
   width: 100%;
-  position: relative;
-  border: 1.5px solid #fb9ab2;
+  height: 125px;
+  position: absolute;
+  background: #fcfdff;
+  border: 3px solid #c8d7f5;
+  border-top: none;
+  box-shadow: 5px 20px 40px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 
 .item {
@@ -114,8 +142,8 @@
 }
 
 .type-priority {
+  box-sizing: border-box;
   position: relative;
-  border: none;
   background-color: inherit;
   width: 100%;
   text-align: left;
@@ -123,6 +151,20 @@
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
+  line-height: 19px;
+  height: 40px;
+  border: none;
+  border-top: 2px solid #c8d7f5;
+  top: -9px !important;
+}
+
+#Low.type-priority {
+  border-top: 2px solid #1b3d84;
+}
+
+#High.type-priority {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .text-drop-menu {
@@ -136,9 +178,6 @@
   flex-direction: row;
   width: 25%;
   height: 45%;
-
-  .searchbar {
-  }
 }
 
 .search-atom {
@@ -152,18 +191,5 @@
   position: absolute;
   top: 42%;
   line-height: 10px;
-}
-
-@media only screen and (min-width: 1250px) {
-  .open-sidebar {
-    display: none;
-  }
-}
-@media only screen and (max-width: 1250px) {
-  .open-sidebar {
-    margin-left: -2px;
-    width: 70px;
-    height: 100px;
-    background: #fcfdff;
-  }
+  color: #1b3d84;
 }
