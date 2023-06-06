@@ -14,7 +14,7 @@ const PriorityElement = ({ name, setClick, changeClick, clicked }) => {
   return (
     <>
       <button className="type-priority" onClick={() => handleClick()} id={name}>
-        <p className="text-drop-menu">{clicked === name ? "None" : name}</p>
+        {clicked === name ? "None" : name}
       </button>
       <br />
     </>

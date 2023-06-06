@@ -150,6 +150,15 @@
   align-items: center;
   border: none;
   background-color: inherit;
+  border-radius: 8px;
+}
+
+.log-out-button:hover {
+  background: #c8d7f5;
+}
+
+.log-out:focus {
+  border: 2px solid #ff4f7b;
 }
 
 .log-out-icon {
@@ -161,7 +170,7 @@
   background: url("./images/logout.png");
   position: absolute;
   right: 0;
-  top: 0;
+  top: -5px;
   left: 0;
 }
 
@@ -189,6 +198,15 @@
   align-items: center;
   border: none;
   background-color: inherit;
+  border-radius: 8px;
+}
+
+.my-profile-button:hover {
+  background: #c8d7f5;
+}
+
+.my-profile-button:focus {
+  border: 2px solid #ff4f7b;
 }
 
 .my-profile-icon {
@@ -217,7 +235,7 @@
   line-height: 24px;
   color: #1b3d84;
   position: absolute;
-  top: 45%;
+  top: 47%;
   left: 40%;
 }
 

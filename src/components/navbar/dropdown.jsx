@@ -50,7 +50,12 @@ const DropDown = ({ place, changeClick, defaultPriority }) => {
           aria-expanded={status ? "true" : "false"}
           onClick={toggleDropDown}
         >
-          <p className="priority-title">Priority {clicked}</p>
+          <p
+            className="priority-title"
+            style={{ fontWeight: clicked ? "700" : "400" }}
+          >
+            {clicked ? clicked : "Priority"}
+          </p>
           <img
             className="dropdown-atom"
             src={status ? DropUpAtom : DropDownAtom}
