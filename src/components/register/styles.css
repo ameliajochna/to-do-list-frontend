@@ -203,6 +203,8 @@
 .terms {
   margin-top: 20px;
   position: relative;
+  height: 30px;
+  border-radius: 4px;
 }
 
 .terms input {
@@ -300,4 +302,59 @@
   right: 17px;
   top: 12px;
   background: url("./images/eye.png");
+}
+
+.error-message {
+  margin-top: 10px;
+  width: 400px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  display: flex;
+  align-items: center;
+  color: #af3218;
+}
+
+.document-window {
+  position: absolute;
+  top: 12%;
+  left: 20%;
+  width: 60%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  background: #f7f9ff;
+  border-radius: 8px;
+  padding: 60px 70px;
+}
+
+.btn-close-document {
+  position: absolute;
+  float: right;
+  background: url("./images/exit.png");
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  top: 32px;
+  right: 32px;
+  border: none;
+}
+
+.document-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 634px;
+  height: 46px;
+  background-color: red;
+  gap: 10px;
+}
+
+.document-icon {
+  background: url("./images/document.png");
+  background-repeat: no-repeat;
+  height: 33.33px;
+  width: 26.67px;
 }

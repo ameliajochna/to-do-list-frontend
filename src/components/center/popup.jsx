@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DropDown from "../navbar/dropdown";
 
-function Popup({
+const Popup = ({
   token,
   closePopUp,
   setErrorMessage,
@@ -9,7 +9,7 @@ function Popup({
   edit,
   item,
   handleUpdate,
-}) {
+}) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
@@ -116,6 +116,6 @@ function Popup({
       )}
     </>
   );
-}
+};
 
 export default Popup;

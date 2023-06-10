@@ -8,7 +8,7 @@ import Popup from "./popup";
 import MyProfile from "./myprofile";
 import NavBar from "../navbar/navbar";
 
-const Center = () => {
+export const Center = () => {
   const [token] = useContext(UserContext);
   const [tasks, setTasks] = useState(null);
   const [loaded, setLoaded] = useState(false);
@@ -230,6 +230,11 @@ const Center = () => {
                             </button>
                           </div>
                         </div>
+                        {grp.items.length === 0 ? (
+                          <EmptyDescription grpI={grpI} openPopUp={openPopUp} />
+                        ) : (
+                          <></>
+                        )}
                         {grp.items.map((item, itemI) => {
                           return (
                             <div
@@ -336,4 +341,35 @@ const Center = () => {
   );
 };
 
-export default Center;
+const EmptyDescription = ({ grpI, openPopUp }) => {
+  return (
+    <div
+      className="empty-description"
+      style={{ flexDirection: grpI === 0 ? "column" : "row" }}
+    >
+      {grpI === 0 ? (
+        <>
+          <h4
+            className="inprogress-empty"
+            style={{ margin: "auto", display: "" }}
+          >
+            You don't have any tasks here
+          </h4>
+          <button className="btn-add-to-do" onClick={() => openPopUp(grpI)}>
+            <h4 className="add-to-do-desc">Add new To Do task</h4>
+            <div className="add-to-do-icon" />
+          </button>
+        </>
+      ) : (
+        <>
+          <div className="dragging-icon" />
+          <h4 className="inprogress-empty">
+            {grpI === 1
+              ? "If you are working on a task drag and drop it here"
+              : "If you have finished the task drag and drop it here"}
+          </h4>
+        </>
+      )}
+    </div>
+  );
+};

@@ -32,6 +32,7 @@ const Login = ({ setRegister }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setErrorMessage("");
     if (password === "" || email === "")
       setErrorMessage("You need to fill both email and password");
     else submitLogin();
@@ -47,7 +48,13 @@ const Login = ({ setRegister }) => {
       <h3 className="title-login">Welcome back and be productive!</h3>
       <div className="field">
         <label className="login-label">Email address *</label>
-        <div className="login-field">
+        <div
+          className="login-field"
+          style={{
+            border:
+              errorMessage === "" ? "1px solid #1B3D84" : "1px solid #AF3218",
+          }}
+        >
           <input
             type="email"
             placeholder="E.g. productivity@email.com"
@@ -60,7 +67,13 @@ const Login = ({ setRegister }) => {
 
       <div className="field">
         <label className="login-label">Password *</label>
-        <div className="login-field">
+        <div
+          className="login-field"
+          style={{
+            border:
+              errorMessage === "" ? "1px solid #1B3D84" : "1px solid #AF3218",
+          }}
+        >
           <input
             type={passwordType}
             placeholder="Enter at least 8 digits"
@@ -77,6 +90,7 @@ const Login = ({ setRegister }) => {
 
       <ErrorMessage message={errorMessage} />
       <br />
+      {console.log("errror:", errorMessage)}
       <button className="submit-login" onClick={(e) => handleSubmit(e)}>
         Log in
         <span className="login-icon"></span>

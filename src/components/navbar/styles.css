@@ -14,11 +14,11 @@
 .my-task-text {
   position: relative;
   left: 4%;
-  width: 130px;
+  width: 140px;
   font-family: "Lato";
   font-style: normal;
   font-weight: 600;
-  font-size: 32px;
+  font-size: 2rem;
   display: flex;
   color: #fcfdff;
 }

@@ -153,7 +153,7 @@
 }
 
 .popup-window {
-  position: absolute;
+  position: fixed;
   top: 12%;
   left: 25%;
   width: 35%;
@@ -167,7 +167,7 @@
 }
 
 .page-blur {
-  position: absolute;
+  position: fixed;
   width: 117%;
   height: 112%;
   top: -12%;
@@ -265,4 +265,79 @@
   font-size: 16px;
 
   color: #af3218;
+}
+
+.empty-description {
+  display: flex;
+  align-items: center;
+  border-radius: 0px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: calc(100% - 40px);
+  min-height: 50px;
+  gap: 10px;
+  height: auto;
+}
+
+.dragging-icon {
+  margin-top: -20px;
+  width: 28px;
+  height: 21px;
+  border-radius: 0px;
+  background: url("./images/dragging.png");
+  vertical-align: middle;
+}
+
+.inprogress-empty {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #1b3d84;
+  vertical-align: middle;
+}
+
+.btn-add-to-do {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 33px;
+  width: 240px;
+  height: 40px;
+  border: 2px solid #1b3d84;
+  border-radius: 8px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  background-color: inherit;
+}
+
+.add-to-do-desc {
+  width: 100%;
+  height: 19px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  color: #1b3d84;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.add-to-do-icon {
+  width: 20px;
+  height: 20px;
+  margin-left: -5px;
+  display: flex;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  background: url("./images/plus.png");
+  background-repeat: no-repeat;
 }
