@@ -186,6 +186,7 @@ export const Center = () => {
           ) : (
             <>
               <NavBar tasks={tasks} />
+              <Sidebar percent={percent} />
               <div className="table-backgroud">
                 <div className="table-group">
                   {list.map((grp, grpI) => {
@@ -274,30 +275,49 @@ export const Center = () => {
                                   data-bs-toggle="dropdown"
                                   aria-haspopup="true"
                                   aria-expanded="false"
-                                >
-                                  <img
-                                    className="item-button"
-                                    src={DotsIcon}
-                                    alt=""
-                                  />
-                                </button>
+                                />
                                 <div
                                   className="dropdown-menu"
                                   id="delate"
                                   aria-labelledby="dropdownMenuButton"
                                 >
+                                  {grpI === 2 ? (
+                                    <></>
+                                  ) : (
+                                    <button className="item-options" id="first">
+                                      {grpI === 0
+                                        ? "Move to In Progress"
+                                        : "Move to Done"}
+                                      <div
+                                        className="dragging-icon"
+                                        style={{
+                                          position: "absolute",
+                                          marginTop: "2px",
+                                          right: "20px",
+                                        }}
+                                      />
+                                    </button>
+                                  )}
+                                  <div
+                                    className="divider"
+                                    style={{ borderColor: "#C8D7F5" }}
+                                  />
                                   <button
-                                    className="delate-item-button"
+                                    className="item-options"
+                                    id={grpI === 2 ? "first" : "second"}
                                     onClick={() => handleDelete(item, item.id)}
                                   >
-                                    Delate
+                                    Delate this task
                                   </button>
-                                  <br />
+                                  <div
+                                    className="divider"
+                                    style={{ borderColor: "#C8D7F5" }}
+                                  />
                                   <button
-                                    className="edit-item-button"
+                                    className="item-options"
                                     onClick={() => handleEdit(item)}
                                   >
-                                    Edit
+                                    Change this task
                                   </button>
                                 </div>
                               </div>
@@ -330,7 +350,6 @@ export const Center = () => {
                   <></>
                 )}
               </div>
-              <Sidebar percent={percent} />
             </>
           )}
         </>

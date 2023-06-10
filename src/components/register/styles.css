@@ -346,10 +346,9 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 634px;
+  width: 100%;
   height: 46px;
-  background-color: red;
-  gap: 10px;
+  gap: 30px;
 }
 
 .document-icon {
@@ -357,4 +356,36 @@
   background-repeat: no-repeat;
   height: 33.33px;
   width: 26.67px;
+}
+
+.document-text-title {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 43px;
+  display: flex;
+  align-items: center;
+  color: #001134;
+}
+
+.rules-block {
+  margin-top: 5%;
+  height: 85%;
+  width: 100%;
+  overflow-y: auto;
+  background: #fcfdff;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  color: #001134;
+  padding: 0px 32px;
+}
+
+.rules-text {
+  font-family: "Lato";
+  font-style: normal;
 }
