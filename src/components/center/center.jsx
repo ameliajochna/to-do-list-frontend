@@ -16,7 +16,6 @@ export const Center = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleDelete = async (item, id) => {
-    console.log("item: ", item);
     const requestOptions = {
       method: "DELETE",
       headers: {
@@ -59,7 +58,6 @@ export const Center = () => {
 
   const getList = (data) => {
     const tasksCopy = [...data];
-    console.log("task:", tasksCopy[0]);
     const todo = tasksCopy.filter((v) => v.state === "To do");
     const inprogress = tasksCopy.filter((v) => v.state === "In progress");
     const done = tasksCopy.filter((v) => v.state === "Done");
@@ -97,7 +95,6 @@ export const Center = () => {
     dragNode.current = e.target;
     dragNode.current.addEventListener("dragend", handleDragEnd);
     dragItem.current = p;
-    console.log(dragItem);
 
     setTimeout(() => {
       setDragging(true);
@@ -175,6 +172,19 @@ export const Center = () => {
     setPop(true);
   };
 
+  const moveToNext = (grpI, itemI) => {
+    let itemCopy = list[grpI].items[itemI];
+    if (itemCopy.state === "To do") itemCopy.state = "In progress";
+    else if (itemCopy.state === "In progress") itemCopy.state = "Done";
+    else return;
+    handleUpdate(itemCopy);
+  };
+
+  const moveAllNext = (grpI) => {
+    console.log(list[grpI].items);
+    while (!list[grpI].items.empty);
+  };
+
   const [myprofile, setMyProfile] = useState(false);
 
   return (
@@ -208,26 +218,40 @@ export const Center = () => {
                               {grp.items.length === 1 ? "task" : "tasks"}
                             </p>
                           </div>
-                          <div className="menu-buttons">
-                            <button
-                              className="plus-button"
-                              onClick={() => openPopUp(grpI)}
-                            >
-                              <img
-                                className="plus-icon"
-                                src={PlusIcon}
-                                alt=""
-                              />
-                            </button>
-                            <button
-                              className="dots-button"
-                              onClick={() => console.log("options")}
-                            >
-                              <img
-                                className="dots-icon"
-                                src={DotsIcon}
-                                alt=""
-                              />
+                          <button
+                            className="plus-button"
+                            onClick={() => openPopUp(grpI)}
+                          ></button>
+                          <button
+                            className="item-button-block"
+                            data-bs-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            style={{ marginTop: "40px" }}
+                          />
+                          <div
+                            className="dropdown-menu"
+                            id="mainoptions"
+                            aria-labelledby="dropdownMenuButton"
+                          >
+                            {grpI !== 2 ? (
+                              <>
+                                <button
+                                  className="item-options"
+                                  id="first"
+                                  onClick={() => moveAllNext(grpI)}
+                                >
+                                  Move all to{" "}
+                                  {grpI === 0 ? "In progress" : "Done"}
+                                  <div className="dropdown-icon" id="change" />
+                                </button>
+                              </>
+                            ) : (
+                              <></>
+                            )}
+                            <button className="item-options">
+                              Delete all
+                              <div className="dropdown-icon" id="delete" />
                             </button>
                           </div>
                         </div>
@@ -284,31 +308,26 @@ export const Center = () => {
                                   {grpI === 2 ? (
                                     <></>
                                   ) : (
-                                    <button className="item-options" id="first">
+                                    <button
+                                      className="item-options"
+                                      id="first"
+                                      onClick={() => moveToNext(grpI, itemI)}
+                                    >
                                       {grpI === 0
                                         ? "Move to In Progress"
                                         : "Move to Done"}
                                       <div
-                                        className="dragging-icon"
+                                        className="dropdown-icon"
+                                        id="dragging"
                                         style={{
                                           position: "absolute",
                                           marginTop: "2px",
-                                          right: "20px",
+                                          right: "17px",
                                         }}
                                       />
                                     </button>
                                   )}
-                                  <div
-                                    className="divider"
-                                    style={{ borderColor: "#C8D7F5" }}
-                                  />
-                                  <button
-                                    className="item-options"
-                                    id={grpI === 2 ? "first" : "second"}
-                                    onClick={() => handleDelete(item, item.id)}
-                                  >
-                                    Delate this task
-                                  </button>
+
                                   <div
                                     className="divider"
                                     style={{ borderColor: "#C8D7F5" }}
@@ -318,6 +337,26 @@ export const Center = () => {
                                     onClick={() => handleEdit(item)}
                                   >
                                     Change this task
+                                    <div
+                                      className="dropdown-icon"
+                                      id="change"
+                                    />
+                                  </button>
+
+                                  <div
+                                    className="divider"
+                                    style={{ borderColor: "#C8D7F5" }}
+                                  />
+                                  <button
+                                    className="item-options"
+                                    id={grpI === 2 ? "first" : "second"}
+                                    onClick={() => handleDelete(item, item.id)}
+                                  >
+                                    Delete this task
+                                    <div
+                                      className="dropdown-icon"
+                                      id="delete"
+                                    />
                                   </button>
                                 </div>
                               </div>

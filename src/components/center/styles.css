@@ -36,6 +36,7 @@
 }
 
 .menu {
+  position: relative;
   display: flex;
   width: 100%;
 }
@@ -61,15 +62,29 @@
 .menu-buttons {
   position: relative;
   display: flex;
-  justify-content: center;
-  width: 30%;
-  gap: 5%;
-  margin-bottom: 5%;
+  margin-top: 30px;
+  margin-left: 20%;
+  width: 70px;
+  height: 30px;
 }
 
 .plus-button {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  margin-left: 40px;
+  margin-right: 10px;
+  margin-top: 40px;
   background-color: inherit;
   border: none;
+  background: url("./images/plus.png");
+  background-repeat: no-repeat;
+  border-radius: 25px;
+  background-position: center;
+}
+
+.plus-button:hover {
+  border: 2px solid #c8d7f5;
 }
 
 .dots-button {
@@ -123,13 +138,21 @@
   border: none;
   background-color: inherit;
   margin-left: auto;
-  margin-top: -1%;
-  height: 24px;
-  width: 24px;
+  height: 25px;
+  width: 25px;
   border-radius: 20px;
   background: url("./images/dots.png");
   background-repeat: no-repeat;
   background-position: center;
+}
+.dragging-icon {
+  margin-top: -20px;
+  width: 28px;
+  height: 21px;
+  border-radius: 0px;
+  background: url("./images/dragging.png");
+  background-repeat: no-repeat;
+  vertical-align: middle;
 }
 
 .item-options {
@@ -148,6 +171,10 @@
   height: 40px;
   width: 210px;
   padding: 8px 16px;
+}
+
+.item-options:hover {
+  background: #c8d7f5;
 }
 
 #first.item-options {
@@ -193,8 +220,8 @@
   position: absolute;
   top: 12%;
   left: 25%;
-  width: 35%;
-  height: 50%;
+  width: 504px;
+  min-height: 493px;
   display: flex;
   flex-direction: column;
   background: #f7f9ff;
@@ -214,9 +241,10 @@
 
 .add-title {
   position: relative;
-  width: 70%;
   margin-top: 3%;
-  height: 15%;
+  width: 380px;
+  height: 62px;
+  border-radius: 8px;
 }
 
 .input-title {
@@ -231,23 +259,25 @@
   font-style: normal;
   font-size: 24px;
   border: none;
-  color: #1b3d84;
+  color: #001134;
   font-weight: 600;
 }
 
 .input-title::placeholder {
   font-family: "Lato";
   font-style: normal;
-  font-weight: 600;
-  font-size: 30px;
-  color: #1b3d84;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  color: #001134;
 }
 
 .add-description {
   position: relative;
-  width: 70%;
   margin-top: 3%;
-  height: 40%;
+  width: 380px;
+  height: 152px;
+  border-radius: 8px;
 }
 
 .input-description {
@@ -270,17 +300,20 @@
 .input-description::placeholder {
   font-family: "Lato";
   font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 24px;
-  color: #1b3d84;
-}
-
-.dropdown-divider {
-  color: #c8d7f5;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  color: #001134;
 }
 
 #delate.dropdown-menu {
+  background: #fcfdff;
+  border: 2px solid #c8d7f5;
+  box-shadow: 5px 10px 40px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+#mainoptions.dropdown-menu {
   background: #fcfdff;
   border: 2px solid #c8d7f5;
   box-shadow: 5px 10px 40px 4px rgba(0, 0, 0, 0.2);
@@ -300,12 +333,14 @@
 }
 
 .error-input {
+  margin-right: 175px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   font-family: "Lato";
   font-style: normal;
-  margin-top: 6%;
-  font-weight: 550;
-  font-size: 16px;
-
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
   color: #af3218;
 }
 
@@ -322,14 +357,35 @@
   height: auto;
 }
 
-.dragging-icon {
+.dropdown-icon {
+  position: absolute;
   margin-top: -20px;
   width: 28px;
   height: 21px;
   border-radius: 0px;
+  vertical-align: middle;
+}
+
+#dragging.dropdown-icon {
+  right: 19px;
+  margin-top: 0px;
   background: url("./images/dragging.png");
   background-repeat: no-repeat;
-  vertical-align: middle;
+}
+
+#change.dropdown-icon {
+  right: 19px;
+  margin-top: 0px;
+  background: url("./images/change.png");
+  background-repeat: no-repeat;
+}
+
+#delete.dropdown-icon {
+  height: 25px;
+  right: 19px;
+  margin-top: 0px;
+  background: url("./images/delete.png");
+  background-repeat: no-repeat;
 }
 
 .inprogress-empty {
@@ -383,4 +439,26 @@
   flex-grow: 0;
   background: url("./images/plus.png");
   background-repeat: no-repeat;
+}
+
+#priority.drop-down-description {
+  position: absolute;
+  top: 200px;
+  left: 0px;
+}
+
+#title.drop-down-description {
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: -12px;
+  left: -157px;
+  color: #001134;
+}
+
+#description.drop-down-description {
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: -12px;
+  left: -130px;
+  color: #001134;
 }

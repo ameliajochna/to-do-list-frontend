@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const PriorityElement = ({ name, setClick, changeClick, clicked }) => {
+const PriorityElement = ({ name, setClick, changeClick, clicked, last }) => {
   const handleClick = () => {
     if (name === clicked) {
       changeClick("");
@@ -13,10 +13,19 @@ const PriorityElement = ({ name, setClick, changeClick, clicked }) => {
 
   return (
     <>
-      <button className="type-priority" onClick={() => handleClick()} id={name}>
+      <button
+        className="item-options type-priority"
+        styles={{ width: "200px", height: "40px" }}
+        onClick={() => handleClick()}
+        id={name}
+      >
         {clicked === name ? "None" : name}
       </button>
-      <br />
+      {last ? (
+        <></>
+      ) : (
+        <div className="divider" style={{ background: "black" }} />
+      )}
     </>
   );
 };

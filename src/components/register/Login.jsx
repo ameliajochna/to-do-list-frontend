@@ -1,8 +1,6 @@
 import React, { useState, useContext } from "react";
 import ErrorMessage from "./ErrorMessage";
 import { UserContext } from "../../context/UserContext";
-import BlueLogIn from "./images/bluelogin.png";
-import WhiteLogIn from "./images/whitelogin.png";
 
 const Login = ({ setRegister }) => {
   const [email, setEmail] = useState("");
@@ -90,7 +88,6 @@ const Login = ({ setRegister }) => {
 
       <ErrorMessage message={errorMessage} />
       <br />
-      {console.log("errror:", errorMessage)}
       <button className="submit-login" onClick={(e) => handleSubmit(e)}>
         Log in
         <span className="login-icon"></span>

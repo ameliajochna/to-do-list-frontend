@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DropDown from "../navbar/dropdown";
+import ErrorMessage from "../register/ErrorMessage";
 
 const Popup = ({
   token,
@@ -15,6 +16,7 @@ const Popup = ({
   const [priority, setPriority] = useState("");
   const [error, setError] = useState("");
   const [loaded, setLoaded] = useState(false);
+  const [info, setInfo] = useState("");
 
   const handleCreateTask = async (e) => {
     e.preventDefault();
@@ -39,25 +41,34 @@ const Popup = ({
     };
     const response = await fetch("/api/tasks", requestOptions);
     if (!response.ok) {
-      setErrorMessage("Something went wrong when adding a task");
+      setErrorMessage("Something went wrong while adding a task");
+    }
+  };
+
+  const checkSubmit = (e) => {
+    if (priority === "") {
+      setError("Please choose priority of the task");
+    }
+    if (description === "" && title === "") {
+      setInfo("Please type in title or description of the task");
+    }
+    console.log(error, info);
+    if (error === "" && info === "") {
+      if (edit) {
+        item.title = title;
+        item.description = description;
+        item.priority = priority;
+        handleUpdate(item);
+      } else {
+        handleCreateTask(e);
+      }
+      closePopUp();
     }
   };
 
   const handleKey = (e) => {
     if (e.key === "Enter") {
-      if (priority === "") {
-        setError("You must choose priority of the task");
-      } else {
-        if (edit) {
-          item.title = title;
-          item.description = description;
-          item.priority = priority;
-          handleUpdate(item);
-        } else {
-          handleCreateTask(e);
-        }
-        closePopUp();
-      }
+      checkSubmit(e);
     } else if (e.key === "Escape") {
       closePopUp();
     }
@@ -72,16 +83,42 @@ const Popup = ({
     setLoaded(true);
   };
 
+  useEffect(() => {
+    if (priority !== "") setError("");
+    if (title !== "" || description !== "") setInfo("");
+  });
+
   return (
     <>
       {loaded ? (
         <div className="popup-window" onKeyUp={(e) => handleKey(e)}>
+          <button className="btn-close-document" onClick={() => closePopUp()} />
+          <br />
           <DropDown
             place="pu"
             changeClick={setPriority}
             defaultPriority={priority}
+            error={error}
           />
-          <div className="add-title">
+          {error !== "" ? <p className="error-input">{error}</p> : <></>}
+          {title !== "" ? (
+            <p className="drop-down-description" id="title">
+              Title
+            </p>
+          ) : (
+            <></>
+          )}
+          <div
+            className="add-title"
+            style={{
+              border:
+                title !== ""
+                  ? "1px solid #FF4F7B"
+                  : info
+                  ? "1px solid #AF3218"
+                  : "1px solid #1B3D84",
+            }}
+          >
             <input
               type="text"
               required
@@ -91,7 +128,24 @@ const Popup = ({
               className="input-title"
             />
           </div>
-          <div className="add-description">
+          {description !== "" ? (
+            <p className="drop-down-description" id="description">
+              Description
+            </p>
+          ) : (
+            <></>
+          )}
+          <div
+            className="add-description"
+            style={{
+              border:
+                description !== ""
+                  ? "1px solid #FF4F7B"
+                  : info
+                  ? "1px solid #AF3218"
+                  : "1px solid #1B3D84",
+            }}
+          >
             <textarea
               type="text"
               required
@@ -101,15 +155,25 @@ const Popup = ({
               className="input-description"
             />
           </div>
-          <div className="popup-error-space">
-            {error !== "" ? (
-              <>
-                <p className="error-input">{error}</p>
-              </>
-            ) : (
-              <></>
-            )}
-          </div>
+          {info !== "" ? (
+            <p className="error-input" style={{ marginRight: "110px" }}>
+              {info}
+            </p>
+          ) : (
+            <></>
+          )}
+          <button
+            className="submit-login"
+            style={{
+              width: "205px",
+              height: "35px",
+              marginTop: "32px",
+              marginBottom: "44px",
+            }}
+            onClick={(e) => checkSubmit(e)}
+          >
+            Create a new task
+          </button>
         </div>
       ) : (
         loadData()
