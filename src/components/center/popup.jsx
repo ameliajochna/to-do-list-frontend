@@ -52,7 +52,8 @@ const Popup = ({
     if (description === "" && title === "") {
       setInfo("Please type in title or description of the task");
     }
-    console.log(error, info);
+    console.log(priority, description, title);
+    console.log("info", error, info);
     if (error === "" && info === "") {
       if (edit) {
         item.title = title;

@@ -11,7 +11,7 @@
 
   position: absolute;
   width: 14%;
-  min-height: 100px;
+  min-height: 96px;
   height: 10%;
   min-width: 200px;
 
@@ -27,9 +27,9 @@
   min-width: 200px;
   width: 14%;
   min-height: 700px;
-  height: 90%;
+  height: calc(100% - max(10%, 96px));
   top: max(100px, 10%);
-  transition: left 0.3 ease;
+  /* transition: left 0.3 ease; */
   background: #fcfdff;
 }
 
@@ -249,8 +249,8 @@
 .red-line {
   position: absolute;
   background-color: #ff4f7b;
-  left: max(calc(13.95%), 198px);
-  min-height: 800px;
+  left: max(13.95%, 198px);
+  min-height: 796px;
   height: 100%;
   width: 2px;
 }
@@ -282,7 +282,7 @@
   .red-line {
     left: 198px;
     height: 100%;
-    min-height: 800px;
+    min-height: 796px;
     width: 2px;
   }
 }

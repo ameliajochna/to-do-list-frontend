@@ -15,7 +15,7 @@ export const Center = () => {
   const [percent, setPercent] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleDelete = async (item, id) => {
+  const handleDelete = async (id) => {
     const requestOptions = {
       method: "DELETE",
       headers: {
@@ -181,8 +181,16 @@ export const Center = () => {
   };
 
   const moveAllNext = (grpI) => {
-    console.log(list[grpI].items);
-    while (!list[grpI].items.empty);
+    let length = list[grpI].items.length;
+    for (let i = length - 1; i >= 0; i--) moveToNext(grpI, i);
+  };
+
+  const deleteAll = (grpI) => {
+    let lenght = list[grpI].items.length;
+    for (let i = lenght - 1; i >= 0; i--) {
+      let id = list[grpI].items[i].id;
+      handleDelete(id);
+    }
   };
 
   const [myprofile, setMyProfile] = useState(false);
@@ -195,8 +203,6 @@ export const Center = () => {
             <MyProfile token={token} setMyProfile={setMyProfile} />
           ) : (
             <>
-              <NavBar tasks={tasks} />
-              <Sidebar percent={percent} />
               <div className="table-backgroud">
                 <div className="table-group">
                   {list.map((grp, grpI) => {
@@ -249,7 +255,10 @@ export const Center = () => {
                             ) : (
                               <></>
                             )}
-                            <button className="item-options">
+                            <button
+                              className="item-options"
+                              onClick={() => deleteAll(grpI)}
+                            >
                               Delete all
                               <div className="dropdown-icon" id="delete" />
                             </button>
@@ -350,7 +359,7 @@ export const Center = () => {
                                   <button
                                     className="item-options"
                                     id={grpI === 2 ? "first" : "second"}
-                                    onClick={() => handleDelete(item, item.id)}
+                                    onClick={() => handleDelete(item.id)}
                                   >
                                     Delete this task
                                     <div
@@ -389,6 +398,8 @@ export const Center = () => {
                   <></>
                 )}
               </div>
+              <NavBar tasks={tasks} />
+              <Sidebar percent={percent} />
             </>
           )}
         </>

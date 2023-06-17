@@ -36,10 +36,9 @@ const Sidebar = ({ percent, setMyProfile }) => {
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
-  }, []); // Initialize windowWidth on component mount
+  }, []);
 
   return (
-    // <div className="sidebar-component">
     <>
       {windowWidth <= 1250 && !sideBar && (
         <button className="open-sidebar" onClick={handleToggleSidebar}>
