@@ -147,12 +147,13 @@
 }
 .dragging-icon {
   margin-top: -20px;
-  width: 28px;
-  height: 21px;
+  min-width: 28px;
+  min-height: 21px;
   border-radius: 0px;
   background: url("./images/dragging.png");
   background-repeat: no-repeat;
   vertical-align: middle;
+  background-position: center;
 }
 
 .item-options {

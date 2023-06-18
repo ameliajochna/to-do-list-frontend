@@ -2,8 +2,6 @@ import React, { useEffect, useRef, useState, useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import "./styles.css";
 import Sidebar from "../sidebar/sidebar";
-import DotsIcon from "./images/dots.png";
-import PlusIcon from "./images/plus.png";
 import Popup from "./popup";
 import MyProfile from "./myprofile";
 import NavBar from "../navbar/navbar";
@@ -227,6 +225,7 @@ export const Center = () => {
                           <button
                             className="plus-button"
                             onClick={() => openPopUp(grpI)}
+                            title="Add a task"
                           ></button>
                           <button
                             className="item-button-block"
@@ -234,6 +233,7 @@ export const Center = () => {
                             aria-haspopup="true"
                             aria-expanded="false"
                             style={{ marginTop: "40px" }}
+                            title="More options"
                           />
                           <div
                             className="dropdown-menu"
@@ -308,6 +308,7 @@ export const Center = () => {
                                   data-bs-toggle="dropdown"
                                   aria-haspopup="true"
                                   aria-expanded="false"
+                                  title="More options"
                                 />
                                 <div
                                   className="dropdown-menu"

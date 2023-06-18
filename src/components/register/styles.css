@@ -120,6 +120,14 @@
   position: relative;
 }
 
+.login-field:hover {
+  border: 2.5px solid #1b3d84 !important;
+}
+
+.login-field:focus {
+  border: 2px solid #ff4f7b;
+}
+
 .login-label {
   font-family: "Lato";
   font-style: normal;

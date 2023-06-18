@@ -14,9 +14,9 @@ const Popup = ({
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [info, setInfo] = useState("");
+  const [info, setInfo] = useState(false);
 
   const handleCreateTask = async (e) => {
     e.preventDefault();
@@ -46,15 +46,11 @@ const Popup = ({
   };
 
   const checkSubmit = (e) => {
-    if (priority === "") {
-      setError("Please choose priority of the task");
-    }
-    if (description === "" && title === "") {
-      setInfo("Please type in title or description of the task");
-    }
-    console.log(priority, description, title);
-    console.log("info", error, info);
-    if (error === "" && info === "") {
+    if (priority === "") setError(true);
+
+    if (description === "" && title === "") setInfo(true);
+
+    if (priority !== "" && (description !== "" || title !== "")) {
       if (edit) {
         item.title = title;
         item.description = description;
@@ -87,6 +83,7 @@ const Popup = ({
   useEffect(() => {
     if (priority !== "") setError("");
     if (title !== "" || description !== "") setInfo("");
+    console.log(priority, title, description, error, info);
   });
 
   return (
@@ -101,7 +98,11 @@ const Popup = ({
             defaultPriority={priority}
             error={error}
           />
-          {error !== "" ? <p className="error-input">{error}</p> : <></>}
+          {error ? (
+            <p className="error-input">Please choose priority of the task</p>
+          ) : (
+            <></>
+          )}
           {title !== "" ? (
             <p className="drop-down-description" id="title">
               Title
@@ -156,9 +157,9 @@ const Popup = ({
               className="input-description"
             />
           </div>
-          {info !== "" ? (
+          {info ? (
             <p className="error-input" style={{ marginRight: "110px" }}>
-              {info}
+              Please type in title or description of the task
             </p>
           ) : (
             <></>
