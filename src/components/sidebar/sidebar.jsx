@@ -75,6 +75,7 @@ const Sidebar = ({ percent, setMyProfile }) => {
               </button>
             </div>
           </div>
+          <div className="filler" />
           <div className="red-line" />
         </>
       )}

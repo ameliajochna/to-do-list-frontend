@@ -5,6 +5,7 @@ import Sidebar from "../sidebar/sidebar";
 import Popup from "./popup";
 import MyProfile from "./myprofile";
 import NavBar from "../navbar/navbar";
+import Filters from "./filters";
 
 export const Center = () => {
   const [token] = useContext(UserContext);
@@ -64,6 +65,7 @@ export const Center = () => {
       { title: "In progress", items: inprogress },
       { title: "Done", items: done },
     ];
+    console.log(newList);
     setList(newList);
     let percent;
     if (tasksCopy.length === 0) percent = 0;
@@ -193,6 +195,9 @@ export const Center = () => {
 
   const [myprofile, setMyProfile] = useState(false);
 
+  const [filterName, setFilterName] = useState("");
+  const [filterPriority, setFilterPriority] = useState("");
+
   return (
     <>
       {loaded && tasks ? (
@@ -202,6 +207,12 @@ export const Center = () => {
           ) : (
             <>
               <div className="table-backgroud">
+                <Filters
+                  filterName={filterName}
+                  filterPriority={filterPriority}
+                  setFilterName={setFilterName}
+                  setFilterPriority={setFilterPriority}
+                />
                 <div className="table-group">
                   {list.map((grp, grpI) => {
                     return (
@@ -213,6 +224,11 @@ export const Center = () => {
                             : null
                         }
                         className="table"
+                        style={{
+                          height: filterName || filterPriority ? "95%" : "100%",
+                          marginTop:
+                            filterName || filterPriority ? "35px" : "0px",
+                        }}
                       >
                         <div className="menu">
                           <div className="menu-text">
@@ -383,9 +399,18 @@ export const Center = () => {
                     );
                   })}
                 </div>
-                {popWindow ? (
-                  <div>
-                    <div className="page-blur" />
+              </div>
+              <NavBar
+                tasks={tasks}
+                searchName={filterName}
+                setSearch={setFilterName}
+                setPriority={setFilterPriority}
+                filterPriority={filterPriority}
+              />
+              <Sidebar percent={percent} />
+              {popWindow ? (
+                <>
+                  <div className="page-blur">
                     <Popup
                       token={token}
                       closePopUp={closePopUp}
@@ -395,12 +420,10 @@ export const Center = () => {
                       handleUpdate={handleUpdate}
                     />
                   </div>
-                ) : (
-                  <></>
-                )}
-              </div>
-              <NavBar tasks={tasks} />
-              <Sidebar percent={percent} />
+                </>
+              ) : (
+                <></>
+              )}
             </>
           )}
         </>

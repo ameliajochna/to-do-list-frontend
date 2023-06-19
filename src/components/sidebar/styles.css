@@ -97,23 +97,23 @@
 
 .percent-dot-block {
   position: relative;
-  left: 42.5%;
-  width: 60px;
-  height: 60px;
-}
-
-.percent-dot {
-  position: relative;
+  left: 43%;
+  width: 70px;
+  height: 70px;
+  background: url("./images/bluedot.png");
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .percent-text {
-  position: relative;
-
   font-family: "Lato";
   font-style: normal;
-  font-weight: 600;
-  font-size: 115%;
-
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  position: absolute;
+  top: 32%;
+  left: 25%;
   color: #fcfdff;
 }
 
@@ -266,6 +266,12 @@
   }
 }
 
+@media only screen and (min-width: 800px) {
+  .filler {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 1250px) {
   .open-sidebar {
     margin-left: -2px;
@@ -280,5 +286,19 @@
     height: 100%;
     min-height: 796px;
     width: 2px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .filler {
+    position: absolute;
+    top: max(900px, 97%);
+    left: 0px;
+    background: #fcfdff;
+    height: 1000px;
+    width: 200px;
+  }
+  .red-line {
+    height: 2115px;
   }
 }

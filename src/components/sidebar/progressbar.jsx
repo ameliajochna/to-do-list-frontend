@@ -1,5 +1,4 @@
 import React from "react";
-import blueVector from "./images/bluedot.png";
 
 const ProgressBar = ({ percent }) => {
   const vertPosition = () => {
@@ -17,10 +16,7 @@ const ProgressBar = ({ percent }) => {
         <div className="progress-bar" style={{ width: percent + "%" }} />
       </div>
       <div className="percent-dot-block" style={{ marginTop: vertPosition() }}>
-        <img className="percent-dot" src={blueVector} alt="" />
-        <p className="percent-text" style={{ marginTop: "-40px" }}>
-          {percent + "%"}
-        </p>
+        <p className="percent-text">{percent + "%"}</p>
       </div>
     </div>
   );

@@ -3,14 +3,23 @@ import "./styles.css";
 import SearchBar from "./searchbar";
 import DropDown from "./dropdown";
 
-const NavBar = ({ tasks }) => {
-  const [priority, setPriority] = useState("");
-
+const NavBar = ({
+  tasks,
+  searchName,
+  setSearch,
+  setPriority,
+  filterPriority,
+}) => {
   return (
     <div className="navigation-bar">
       <div className="my-task-text">My Tasks</div>
-      <SearchBar tasks={tasks} />
-      <DropDown place={"nb"} changeClick={setPriority} />
+      <SearchBar searchName={searchName} setSearch={setSearch} />
+      <DropDown
+        place={"nb"}
+        changeClick={setPriority}
+        defaultPriority={filterPriority}
+        error={""}
+      />
     </div>
   );
 };

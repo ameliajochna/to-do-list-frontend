@@ -33,7 +33,7 @@
   position: absolute;
   left: 67%;
   min-height: 40px;
-  height: 45%;
+  height: 38%;
   min-width: 150px;
   width: 28%;
   border: 2px solid #c8d7f5;
@@ -146,6 +146,7 @@
 
 .search-bar {
   width: 100%;
+  height: 100%;
   background: #fcfdff;
   border: none;
   border: 2px solid #c8d7f5;
@@ -175,7 +176,7 @@
   align-items: center;
   width: 28%;
   min-width: 150px;
-  height: 45%;
+  height: 38%;
 }
 
 .search-atom {
@@ -249,7 +250,7 @@
 
 @media only screen and (max-width: 1250px) {
   .navigation-bar {
-    width: calc(98%);
+    width: calc(100% - 70px);
     left: 70px;
   }
   .navbar-red-line {
@@ -262,16 +263,28 @@
     background-color: #ff4f7b;
   }
   .search-bar-object {
-    left: 30%;
+    left: 32%;
   }
 
   #nb.drop-down {
-    left: 60%;
+    left: 65%;
   }
   .search-bar-title {
-    left: 31.5%;
+    left: 33.5%;
   }
-  .drop-down-description {
-    left: 61.2%;
+  #nb.drop-down-description {
+    left: 66.2%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .my-task-text {
+    font-size: 1.5rem;
+  }
+  .search-bar-object {
+    width: 10%;
+  }
+  #nb.drop-down {
+    width: 10%;
   }
 }

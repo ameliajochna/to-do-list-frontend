@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Login from "./Login";
 import Register from "./Register";
 import "./styles.css";
-import Screenshot from "./images/screenshot.png";
 import BigEllipse from "./images/bigellipse.png";
 import SmallEllipse from "./images/smallellipse.png";
 import Logo from "./images/logo.png";
@@ -17,7 +16,7 @@ const MainPage = () => {
         <h2 className="motto">
           Unlock a world of productivity and organization!
         </h2>
-        <img src={Screenshot} alt="" className="demo-screenshot" />
+        <img className="demo-screenshot" />
         <img src={BigEllipse} alt="" className="big-ellipse-demo" />
         <img src={SmallEllipse} alt="" className="small-ellipse-demo" />
       </div>

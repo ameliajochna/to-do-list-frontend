@@ -32,8 +32,13 @@ const DropDown = ({ place, changeClick, defaultPriority, error }) => {
     };
   }, []);
 
+  useEffect(() => {
+    setClicked(defaultPriority);
+  }, [defaultPriority]);
+
   return (
     <>
+      {console.log(defaultPriority, clicked)}
       {clicked ? (
         <p className="drop-down-description" id={place}>
           Priority
@@ -46,13 +51,14 @@ const DropDown = ({ place, changeClick, defaultPriority, error }) => {
         id={place}
         ref={dropdownRef}
         style={{
-          border: clicked
-            ? "1px solid #FF4F7B"
-            : error !== ""
-            ? "1px solid #AF3218"
-            : place === "pu"
-            ? "1px solid #1B3D84"
-            : "2px solid #C8D7F5",
+          border:
+            clicked !== ""
+              ? "1px solid #FF4F7B"
+              : error !== ""
+              ? "(1px solid #AF3218"
+              : place === "pu"
+              ? "1px solid #1B3D84"
+              : "2px solid #C8D7F5",
         }}
       >
         <button

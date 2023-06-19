@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import SearchAtom from "./images/searching.png";
 
-const SearchBar = () => {
-  const [searchName, setName] = useState("");
+const SearchBar = ({ searchName, setSearch }) => {
   const [status, setStatus] = useState(false);
 
   const handleInputFocus = () => {
@@ -22,7 +21,7 @@ const SearchBar = () => {
           required
           placeholder="Search"
           value={searchName}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
           className="search-bar"
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
