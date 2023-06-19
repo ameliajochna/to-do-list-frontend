@@ -15,6 +15,9 @@
   .popup-window {
     left: 30% !important;
   }
+  .filter-title {
+    margin-left: -30px !important;
+  }
 }
 
 .table-group {
@@ -263,7 +266,7 @@
   font-style: normal;
   font-size: 24px;
   border: none;
-  color: #001134;
+  color: #1b3d84;
   font-weight: 600;
 }
 
@@ -273,7 +276,7 @@
   font-weight: 400;
   font-size: 24px;
   line-height: 29px;
-  color: #001134;
+  color: #1b3d84;
 }
 
 .add-description {
@@ -461,7 +464,7 @@
   margin-top: 10px;
   margin-bottom: -12px;
   left: -157px;
-  color: #001134;
+  color: #1b3d84;
 }
 
 #description.drop-down-description {
@@ -469,7 +472,7 @@
   margin-top: 10px;
   margin-bottom: -12px;
   left: -130px;
-  color: #001134;
+  color: #1b3d84;
 }
 
 @media only screen and (max-width: 800px) {
@@ -532,6 +535,10 @@
   line-height: 20px;
   color: #1b3d84;
   background-color: inherit;
+}
+
+.filter-label:hover {
+  border: 2px solid #c8d7f5;
 }
 
 #filter.btn-close-document {

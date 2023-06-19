@@ -1,11 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const Filters = ({
   filterName,
   filterPriority,
   setFilterName,
   setFilterPriority,
+  data,
+  setList,
 }) => {
+  const applyFilters = (array) => {
+    if (filterName) {
+      array = array.filter(
+        (x) =>
+          x.description.toLowerCase().includes(filterName.toLowerCase()) ||
+          x.title.toLowerCase().includes(filterName.toLowerCase()),
+      );
+    }
+    if (filterPriority) {
+      array = array.filter((x) => x.priority.includes(filterPriority));
+    }
+    return array;
+  };
+
+  useEffect(() => {
+    getList();
+  }, [filterName, filterPriority]);
+
+  const getList = () => {
+    const tasksCopy = [...data];
+    let todo = tasksCopy.filter((v) => v.state === "To do");
+    let inprogress = tasksCopy.filter((v) => v.state === "In progress");
+    let done = tasksCopy.filter((v) => v.state === "Done");
+    todo = applyFilters(todo);
+    inprogress = applyFilters(inprogress);
+    done = applyFilters(done);
+
+    let newList = [
+      { title: "To do", items: todo },
+      { title: "In progress", items: inprogress },
+      { title: "Done", items: done },
+    ];
+    setList(newList);
+  };
+
   const deleteName = () => {
     setFilterName("");
   };
@@ -22,7 +59,7 @@ const Filters = ({
           {filterName ? (
             <button className="filter-label" onClick={() => deleteName()}>
               {filterName}
-              <button className="btn-close-document" id="filter" />
+              <div className="btn-close-document" id="filter" />
             </button>
           ) : (
             <></>
@@ -30,7 +67,11 @@ const Filters = ({
           {filterPriority ? (
             <button className="filter-label" onClick={() => deletePriority()}>
               {filterPriority}
-              <button className="btn-close-document" id="filter" />
+              <div
+                className="btn-close-document"
+                id="filter"
+                style={{ backgroundColor: "#FCFDFF" }}
+              />
             </button>
           ) : (
             <></>

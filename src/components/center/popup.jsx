@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import DropDown from "../navbar/dropdown";
-import ErrorMessage from "../register/ErrorMessage";
 
 const Popup = ({
   token,
@@ -10,6 +9,8 @@ const Popup = ({
   edit,
   item,
   handleUpdate,
+  setSearchName,
+  setFilterPriority,
 }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -45,6 +46,12 @@ const Popup = ({
     }
   };
 
+  const closing = () => {
+    closePopUp();
+    setFilterPriority("");
+    setSearchName("");
+  };
+
   const checkSubmit = (e) => {
     if (priority === "") setError(true);
 
@@ -59,7 +66,7 @@ const Popup = ({
       } else {
         handleCreateTask(e);
       }
-      closePopUp();
+      closing();
     }
   };
 
@@ -67,7 +74,7 @@ const Popup = ({
     if (e.key === "Enter") {
       checkSubmit(e);
     } else if (e.key === "Escape") {
-      closePopUp();
+      closing();
     }
   };
 
@@ -83,14 +90,17 @@ const Popup = ({
   useEffect(() => {
     if (priority !== "") setError("");
     if (title !== "" || description !== "") setInfo("");
-    console.log(priority, title, description, error, info);
   });
 
   return (
     <>
       {loaded ? (
         <div className="popup-window" onKeyUp={(e) => handleKey(e)}>
-          <button className="btn-close-document" onClick={() => closePopUp()} />
+          <button
+            className="btn-close-document"
+            id="btn"
+            onClick={() => closing()}
+          />
           <br />
           <DropDown
             place="pu"

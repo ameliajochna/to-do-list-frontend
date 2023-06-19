@@ -14,6 +14,13 @@ export const Center = () => {
   const [percent, setPercent] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
 
+  const [filterName, setFilterName] = useState("");
+  const [filterPriority, setFilterPriority] = useState("");
+
+  useEffect(() => {
+    getTasks();
+  }, []);
+
   const handleDelete = async (id) => {
     const requestOptions = {
       method: "DELETE",
@@ -65,7 +72,6 @@ export const Center = () => {
       { title: "In progress", items: inprogress },
       { title: "Done", items: done },
     ];
-    console.log(newList);
     setList(newList);
     let percent;
     if (tasksCopy.length === 0) percent = 0;
@@ -195,9 +201,6 @@ export const Center = () => {
 
   const [myprofile, setMyProfile] = useState(false);
 
-  const [filterName, setFilterName] = useState("");
-  const [filterPriority, setFilterPriority] = useState("");
-
   return (
     <>
       {loaded && tasks ? (
@@ -212,6 +215,8 @@ export const Center = () => {
                   filterPriority={filterPriority}
                   setFilterName={setFilterName}
                   setFilterPriority={setFilterPriority}
+                  data={tasks}
+                  setList={setList}
                 />
                 <div className="table-group">
                   {list.map((grp, grpI) => {
@@ -387,10 +392,18 @@ export const Center = () => {
                                 </div>
                               </div>
                               <div className="item-text">
-                                <div className="item-title">{item.title}</div>
-                                <div className="item-description">
-                                  {item.description}
-                                </div>
+                                {item.title ? (
+                                  <div className="item-title">{item.title}</div>
+                                ) : (
+                                  <></>
+                                )}
+                                {item.description ? (
+                                  <div className="item-description">
+                                    {item.description}
+                                  </div>
+                                ) : (
+                                  <></>
+                                )}
                               </div>
                             </div>
                           );
@@ -418,7 +431,10 @@ export const Center = () => {
                       edit={edit}
                       item={editItem}
                       handleUpdate={handleUpdate}
+                      setSearchName={setFilterName}
+                      setFilterPriority={setFilterPriority}
                     />
+                    {console.log(filterName, filterPriority)}
                   </div>
                 </>
               ) : (
@@ -458,8 +474,8 @@ const EmptyDescription = ({ grpI, openPopUp }) => {
           <div className="dragging-icon" />
           <h4 className="inprogress-empty">
             {grpI === 1
-              ? "If you are working on a task drag and drop it here"
-              : "If you have finished the task drag and drop it here"}
+              ? "If you are working on a task, drag and drop it here"
+              : "If you have finished the task, drag and drop it here"}
           </h4>
         </>
       )}

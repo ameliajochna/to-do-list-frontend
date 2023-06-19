@@ -148,7 +148,9 @@ const Register = ({ setRegister }) => {
               className="login-input"
             />
             <button
-              className="show-password"
+              className={`show-password ${
+                passwordType === "text" ? "show-closed" : ""
+              }`}
               onClick={() => changePasswordType()}
             />
           </div>
@@ -195,11 +197,7 @@ const Register = ({ setRegister }) => {
           <></>
         )}
         <br />
-        <button
-          className="submit-login"
-          style={{ marginTop: "-5%" }}
-          onClick={(e) => handleSubmit(e)}
-        >
+        <button className="submit-login" onClick={(e) => handleSubmit(e)}>
           Sign in
           <span className="login-icon"></span>
         </button>

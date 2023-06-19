@@ -9,6 +9,7 @@ const Rules = ({ type, setWindow }) => {
       <div className="document-window">
         <button
           className="btn-close-document"
+          id="btn"
           onClick={() => setWindow(false)}
         />
         <div className="document-title">

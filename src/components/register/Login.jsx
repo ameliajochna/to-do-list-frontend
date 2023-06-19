@@ -41,6 +41,12 @@ const Login = ({ setRegister }) => {
     else setPasswordType("password");
   };
 
+  const handleKey = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    }
+  };
+
   return (
     <div className="login-form">
       <h3 className="title-login">Welcome back and be productive!</h3>
@@ -71,6 +77,7 @@ const Login = ({ setRegister }) => {
             border:
               errorMessage === "" ? "1px solid #1B3D84" : "1px solid #AF3218",
           }}
+          onKeyUp={(e) => handleKey(e)}
         >
           <input
             type={passwordType}
@@ -80,7 +87,9 @@ const Login = ({ setRegister }) => {
             className="login-input"
           />
           <button
-            className="show-password"
+            className={`show-password ${
+              passwordType === "text" ? "show-closed" : ""
+            }`}
             onClick={() => changePasswordType()}
           />
         </div>

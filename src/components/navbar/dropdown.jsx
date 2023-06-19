@@ -38,7 +38,6 @@ const DropDown = ({ place, changeClick, defaultPriority, error }) => {
 
   return (
     <>
-      {console.log(defaultPriority, clicked)}
       {clicked ? (
         <p className="drop-down-description" id={place}>
           Priority

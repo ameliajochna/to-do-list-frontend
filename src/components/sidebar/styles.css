@@ -274,11 +274,16 @@
 
 @media only screen and (max-width: 1250px) {
   .open-sidebar {
+    position: absolute;
     margin-left: -2px;
-    width: 70px;
-    height: 100px;
+    width: 72px;
+    height: 10%;
     background: #fcfdff;
     border: none;
+  }
+
+  .open-sidebar:hover {
+    background: #c8d7f5;
   }
 
   .red-line {

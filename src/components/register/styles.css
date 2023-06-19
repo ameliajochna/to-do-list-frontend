@@ -315,7 +315,10 @@
   width: 25px;
   right: 17px;
   top: 12px;
-  background: url("./images/eye.png");
+  background: url(./images/eye.png);
+}
+.show-password.show-closed {
+  background: url(./images/closed.png);
 }
 
 .error-message {
@@ -347,13 +350,20 @@
 .btn-close-document {
   position: absolute;
   float: right;
-  background: url("./images/exit.png");
+  background-color: inherit;
+  border: none;
+  border-radius: 20px;
+  background-image: url("./images/exit.png");
   background-repeat: no-repeat;
   width: 24px;
   height: 24px;
   top: 32px;
   right: 32px;
   border: none;
+}
+
+#btn.btn-close-document:hover {
+  background-color: #c8d7f5;
 }
 
 .document-title {

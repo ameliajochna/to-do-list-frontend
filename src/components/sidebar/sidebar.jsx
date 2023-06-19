@@ -52,7 +52,12 @@ const Sidebar = ({ percent, setMyProfile }) => {
           <div className="logo-corner">
             <div className="sidebar-logo" />
             {windowWidth <= 1250 && (
-              <button className="close-sidebar" onClick={handleToggleSidebar} />
+              <button
+                className="btn-close-document"
+                id="btn"
+                style={{ top: "20px", left: "160px" }}
+                onClick={handleToggleSidebar}
+              />
             )}
           </div>
           <div className="side-bar">
