@@ -82,10 +82,10 @@ const Sidebar = ({ percent, setMyProfile }) => {
           </div>
           <div className="filler" />
           <div className="red-line" />
+          <div className="page-blur-sidebar" />
         </>
       )}
     </>
-    // </div>
   );
 };
 

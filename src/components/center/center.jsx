@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
 import { UserContext } from "../../context/UserContext";
+import "rc-tooltip/assets/bootstrap.css";
+import Tooltip from "rc-tooltip";
 import "./styles.css";
 import Sidebar from "../sidebar/sidebar";
 import Popup from "./popup";
@@ -228,7 +230,7 @@ export const Center = () => {
                             ? (e) => handleDragEnter(e, { grpI, itemI: 0 })
                             : null
                         }
-                        className="table"
+                        className="table flex-grow-1"
                         style={{
                           height: filterName || filterPriority ? "95%" : "100%",
                           marginTop:
@@ -243,19 +245,30 @@ export const Center = () => {
                               {grp.items.length === 1 ? "task" : "tasks"}
                             </p>
                           </div>
-                          <button
-                            className="plus-button"
-                            onClick={() => openPopUp(grpI)}
-                            title="Add a task"
-                          ></button>
-                          <button
-                            className="item-button-block"
-                            data-bs-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                            style={{ marginTop: "40px" }}
-                            title="More options"
-                          />
+                          <Tooltip
+                            placement="top"
+                            overlay={<span>Add a task</span>}
+                            overlayClassName="custom-tooltip"
+                          >
+                            <button
+                              className="plus-button"
+                              onClick={() => openPopUp(grpI)}
+                            />
+                          </Tooltip>
+
+                          <Tooltip
+                            placement="top"
+                            overlay={<span>More options</span>}
+                            overlayClassName="custom-tooltip"
+                          >
+                            <button
+                              className="item-button-block"
+                              data-bs-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"
+                              style={{ marginTop: "40px" }}
+                            />
+                          </Tooltip>
                           <div
                             className="dropdown-menu"
                             id="mainoptions"
@@ -270,7 +283,10 @@ export const Center = () => {
                                 >
                                   Move all to{" "}
                                   {grpI === 0 ? "In progress" : "Done"}
-                                  <div className="dropdown-icon" id="change" />
+                                  <div
+                                    className="dropdown-icon"
+                                    id="changemenu"
+                                  />
                                 </button>
                               </>
                             ) : (
@@ -281,7 +297,7 @@ export const Center = () => {
                               onClick={() => deleteAll(grpI)}
                             >
                               Delete all
-                              <div className="dropdown-icon" id="delete" />
+                              <div className="dropdown-icon" id="deletemenu" />
                             </button>
                           </div>
                         </div>
@@ -324,13 +340,19 @@ export const Center = () => {
                                     {item.priority}
                                   </p>
                                 </div>
-                                <button
-                                  className="item-button-block"
-                                  data-bs-toggle="dropdown"
-                                  aria-haspopup="true"
-                                  aria-expanded="false"
-                                  title="More options"
-                                />
+
+                                <Tooltip
+                                  placement="top"
+                                  overlay={<span>More options</span>}
+                                  overlayClassName="custom-tooltip"
+                                >
+                                  <button
+                                    className="item-button-block"
+                                    data-bs-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                  />
+                                </Tooltip>
                                 <div
                                   className="dropdown-menu"
                                   id="delate"
