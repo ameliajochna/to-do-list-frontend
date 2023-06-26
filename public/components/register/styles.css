@@ -1,0 +1,415 @@
+.front-page {
+  position: absolute;
+  display: flex;
+  padding: 48px 32px;
+  height: 100%;
+  min-height: 600px;
+  width: 100%;
+}
+
+.demo {
+  position: relative;
+  background: linear-gradient(225.16deg, #ff4f7b -9.58%, #1b3d84 36.66%);
+  border-radius: 12px;
+  width: 50%;
+  height: 100%;
+  padding: 40px 30px;
+}
+
+.front-login {
+  margin-left: 40px;
+  width: 50%;
+}
+
+@media only screen and (max-width: 1200px) {
+  .front-page {
+    padding: 0 0;
+  }
+  .demo {
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 96%;
+    position: absolute;
+    top: 850px;
+  }
+  .front-login {
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+    width: 100%;
+    height: 800px;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .login-logo {
+    width: 30%;
+    height: auto;
+  }
+
+  .login-ellipse {
+    width: 20%;
+  }
+}
+
+.motto {
+  width: 70%;
+  margin: auto;
+  margin-top: 10%;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 100%;
+  text-align: center;
+  color: #ffffff;
+}
+
+.demo-screenshot {
+  position: relative;
+  display: block;
+  margin: auto;
+  margin-top: 10%;
+  margin-bottom: 30px;
+  width: 85%;
+  max-width: 85%;
+  height: 60%;
+  border: none;
+  content: url("./images/screenshot.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.small-ellipse-demo {
+  position: absolute;
+  left: -18px;
+  bottom: 40px;
+}
+
+.big-ellipse-demo {
+  position: absolute;
+  left: -3px;
+  bottom: -23px;
+  transform: rotate(30deg);
+}
+
+.login-form {
+  margin: auto;
+  margin-top: 10%;
+  max-width: 500px;
+}
+
+.login-ellipse {
+  float: right;
+  margin-right: 32px;
+  margin-top: -20px;
+}
+
+.title-login {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  color: #001134;
+  text-align: center;
+  margin-bottom: 10%;
+}
+
+.login-field {
+  box-sizing: border-box;
+  background: #fcfdff;
+  border: 1px solid #1b3d84;
+  border-radius: 8px;
+  height: 52px;
+  position: relative;
+}
+
+.login-field:hover {
+  border: 2.5px solid #1b3d84 !important;
+}
+
+.login-field:focus {
+  border: 2px solid #ff4f7b;
+}
+
+.login-label {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  color: #001134;
+  margin-bottom: 2%;
+  margin-top: 5%;
+}
+
+.login-input {
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  padding: 12px 14px;
+}
+
+.login-input::placeholder {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #001134;
+}
+
+.submit-login {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  gap: 8px;
+  width: 155px;
+  height: 40px;
+  background: #1b3d84;
+  border-radius: 8px;
+  border: none;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+}
+
+.submit-login:hover {
+  background: #c8d7f5;
+  color: #1b3d84;
+}
+
+.no-account-info {
+  margin-top: 8%;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  color: #001134;
+}
+
+.no-account-register {
+  text-decoration: underline;
+  border: none;
+  background: inherit;
+  color: #1b3d84;
+}
+
+.register-form {
+  margin: auto;
+  margin-top: 6%;
+  max-width: 500px;
+}
+
+.terms {
+  margin-top: 20px;
+  position: relative;
+  height: 30px;
+  border-radius: 4px;
+}
+
+.terms input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: url("./images/checkbox.png");
+}
+
+.terms:hover input ~ .checkmark {
+  background: url("./images/hovercheckbox.png");
+}
+
+.terms input:checked ~ .checkmark {
+  background: url("./images/checked.png");
+}
+
+.terms input:checked:hover ~ .checkmark {
+  background: url("./images/checkedhover.png");
+}
+
+.terms input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.login-icon {
+  width: 25px;
+  height: 25px;
+  background: url("./images/whitelogin.png");
+}
+
+.submit-login:hover > .login-icon {
+  background: url("./images/bluelogin.png");
+}
+
+.agreement {
+  margin-left: 38px;
+  margin-top: 2px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #001134;
+}
+
+.account-info {
+  margin-top: 5%;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  color: #001134;
+}
+
+.show-password {
+  position: absolute;
+  border: none;
+  height: 20px;
+  width: 25px;
+  right: 17px;
+  top: 12px;
+  background: url(./images/eye.png);
+}
+.show-password.show-closed {
+  background: url(./images/closed.png);
+}
+
+.error-message {
+  margin-top: 10px;
+  width: 400px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  display: flex;
+  align-items: center;
+  color: #af3218;
+}
+
+.document-window {
+  position: absolute;
+  top: 12%;
+  left: 20%;
+  width: 60%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  background: #f7f9ff;
+  border-radius: 8px;
+  padding: 60px 70px;
+}
+
+.btn-close-document {
+  position: absolute;
+  float: right;
+  background-color: inherit;
+  border: none;
+  border-radius: 20px;
+  background-image: url("./images/exit.png");
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  top: 32px;
+  right: 32px;
+  border: none;
+}
+
+#btn.btn-close-document:hover {
+  background-color: #c8d7f5;
+}
+
+.document-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 46px;
+  gap: 30px;
+}
+
+.document-icon {
+  background: url("./images/document.png");
+  background-repeat: no-repeat;
+  height: 33.33px;
+  width: 26.67px;
+}
+
+.document-text-title {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 43px;
+  display: flex;
+  align-items: center;
+  color: #001134;
+}
+
+.rules-block {
+  margin-top: 5%;
+  height: 85%;
+  width: 100%;
+  overflow-y: auto;
+  background: #fcfdff;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  color: #001134;
+  padding: 0px 32px;
+}
+
+.rules-text {
+  font-family: "Lato";
+  font-style: normal;
+}

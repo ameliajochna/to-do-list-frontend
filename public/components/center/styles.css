@@ -1,0 +1,578 @@
+.table-backgroud {
+  position: absolute;
+  left: 14%;
+  top: max(96px, 10%);
+  width: 86%;
+  height: calc(100% - max(96px, 10%));
+  background: #f7f9ff;
+}
+
+@media only screen and (max-width: 1250px) {
+  .table-backgroud {
+    left: 0px;
+    width: 100%;
+  }
+  .popup-window {
+    left: 30% !important;
+  }
+  .filter-title {
+    margin-left: -30px !important;
+  }
+}
+
+.table-group {
+  position: absolute;
+  display: grid;
+  top: 4%;
+  bottom: 3%;
+  left: 4.5%;
+  right: 4.5%;
+  grid-template-columns: repeat(auto-fill, 31%);
+  gap: 3.5%;
+}
+
+.table {
+  position: relative;
+  overflow-y: auto;
+  padding: 40px 32px;
+  background: #fcfdff;
+  border-radius: 8px;
+  box-shadow: 7px 10px 25px rgba(0, 17, 52, 0.1), 0px 0px 0px 1.2px #1b3d84;
+}
+
+.menu {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.menu-text {
+  width: 70%;
+}
+
+.title {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  color: #001134;
+}
+
+.description {
+  margin-top: -3%;
+  font-size: 18px;
+  color: #001134;
+}
+
+.menu-buttons {
+  position: relative;
+  display: flex;
+  margin-top: 30px;
+  margin-left: 20%;
+  width: 70px;
+  height: 30px;
+}
+
+.plus-button {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  margin-left: 15%;
+  margin-right: 10px;
+  margin-top: 40px;
+  background-color: inherit;
+  border: none;
+  background-image: url("./images/plus.png");
+  background-repeat: no-repeat;
+  border-radius: 25px;
+  background-position: center;
+}
+
+.plus-button:hover {
+  background-color: #c8d7f5;
+}
+
+.dots-button {
+  background-color: inherit;
+  border: none;
+}
+
+.table-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: 3;
+  align-items: flex-start;
+  background: #fcfdff;
+  border: 1px solid #c8d7f5;
+  padding: 20px 18px;
+  border-radius: 9px;
+  height: auto;
+  min-height: 100px;
+  margin-bottom: 3%;
+}
+
+.priority-block {
+  display: flex;
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.item-priority {
+  border-radius: 8px;
+  display: inline-block;
+  vertical-align: top;
+  height: 32px;
+}
+
+.priority-text {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  position: relative;
+  margin-top: -5px;
+  margin-left: -3px;
+  margin-right: 3px;
+}
+
+.item-button-block {
+  grid-row: 1;
+  grid-column: 1;
+  position: relative;
+  border: none;
+  background-color: inherit;
+  margin-left: auto;
+  height: 27px;
+  width: 27px;
+  border-radius: 25px;
+  background-image: url("./images/dots.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.open-dropdown {
+  border: 2px solid #c8d7f5;
+}
+
+.dragging-icon {
+  margin-top: -20px;
+  min-width: 28px;
+  min-height: 21px;
+  border-radius: 0px;
+  background: url("./images/dragging.png");
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  background-position: center;
+}
+
+.item-options {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  color: #1b3d84;
+  border: none;
+  background-color: inherit;
+  border-top: 2px solid #c8d7f5;
+  width: 100%;
+  height: 40px;
+  width: 210px;
+  padding: 8px 16px;
+}
+
+.item-options:hover {
+  background-color: #c8d7f5;
+}
+
+#first.item-options {
+  border-top: none;
+}
+
+.divider {
+  width: 100%;
+}
+
+.item-button-block:hover {
+  background-color: #c8d7f5;
+}
+
+.item-title {
+  grid-row: 2;
+  grid-column: 1;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 19px;
+  color: #001134;
+}
+
+.item-description {
+  grid-row: 3;
+  grid-column: 1;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 18px;
+  color: #001134;
+}
+
+.current {
+  background-color: inherit;
+  color: inherit;
+}
+
+.popup-window {
+  position: absolute;
+  top: 33%;
+  left: 45%;
+  width: 504px;
+  min-height: 493px;
+  display: flex;
+  flex-direction: column;
+  background: #f7f9ff;
+  border-radius: 8px;
+  text-align: center;
+  align-items: center;
+}
+
+.page-blur {
+  position: absolute;
+  width: 117%;
+  height: 120%;
+  top: -20%;
+  left: -17%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.add-title {
+  position: relative;
+  margin-top: 3%;
+  width: 380px;
+  height: 62px;
+  border-radius: 8px;
+}
+
+.input-title {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 12px 32px;
+  gap: 12px;
+  background: #fcfdff;
+  border-radius: 8px;
+  font-family: "Lato";
+  font-style: normal;
+  font-size: 24px;
+  border: none;
+  color: #1b3d84;
+  font-weight: 600;
+}
+
+.input-title::placeholder {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  color: #1b3d84;
+}
+
+.add-description {
+  position: relative;
+  margin-top: 3%;
+  width: 380px;
+  height: 152px;
+  border-radius: 8px;
+}
+
+.input-description {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 12px 32px;
+  gap: 12px;
+  background: #fcfdff;
+  border-radius: 8px;
+  border: none;
+
+  font-family: "Lato";
+  font-style: normal;
+  font-size: 20px;
+  color: #1b3d84;
+  font-weight: 500;
+}
+
+.input-description::placeholder {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  color: #001134;
+}
+
+#delate.dropdown-menu {
+  background: #fcfdff;
+  border: 2px solid #c8d7f5;
+  box-shadow: 5px 10px 40px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+#mainoptions.dropdown-menu {
+  background: #fcfdff;
+  border: 2px solid #c8d7f5;
+  box-shadow: 5px 10px 40px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.delate-item-button {
+  border: none;
+  background-color: inherit;
+
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 550;
+  font-size: 16px;
+
+  color: #af3218;
+}
+
+.error-input {
+  margin-right: 175px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #af3218;
+}
+
+.empty-description {
+  display: flex;
+  align-items: center;
+  border-radius: 0px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: calc(100% - 40px);
+  min-height: 50px;
+  gap: 10px;
+  height: auto;
+}
+
+.dropdown-icon {
+  position: absolute;
+  margin-top: -20px;
+  width: 28px;
+  height: 21px;
+  border-radius: 0px;
+  vertical-align: middle;
+}
+
+#dragging.dropdown-icon {
+  right: 19px;
+  margin-top: 0px;
+  background: url("./images/dragging.png");
+  background-repeat: no-repeat;
+}
+
+#change.dropdown-icon {
+  right: 19px;
+  margin-top: -1px;
+  background: url("./images/change.png");
+  background-repeat: no-repeat;
+}
+#changemenu.dropdown-icon {
+  right: 10px;
+  margin-top: 0px;
+  background: url("./images/change.png");
+  background-repeat: no-repeat;
+}
+
+#delete.dropdown-icon {
+  height: 25px;
+  right: 19px;
+  margin-top: 0px;
+  background: url("./images/delete.png");
+  background-repeat: no-repeat;
+}
+
+#deletemenu.dropdown-icon {
+  height: 25px;
+  right: 10px;
+  margin-top: 0px;
+  background: url("./images/delete.png");
+  background-repeat: no-repeat;
+}
+
+.inprogress-empty {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #1b3d84;
+  vertical-align: middle;
+}
+
+.btn-add-to-do {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 33px;
+  width: 240px;
+  height: 40px;
+  border: 2px solid #1b3d84;
+  border-radius: 8px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  background-color: inherit;
+}
+
+.btn-add-to-do:hover {
+  background-color: #c8d7f5;
+}
+
+.add-to-do-desc {
+  width: 100%;
+  height: 19px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  margin-bottom: 10px;
+  display: flex;
+  color: #1b3d84;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.add-to-do-icon {
+  width: 20px;
+  height: 20px;
+  margin-left: -5px;
+  display: flex;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  background: url("./images/plus.png");
+  background-repeat: no-repeat;
+}
+
+#priority.drop-down-description {
+  position: absolute;
+  top: 200px;
+  left: 0px;
+}
+
+#title.drop-down-description {
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: -12px;
+  left: -157px;
+  color: #1b3d84;
+}
+
+#description.drop-down-description {
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: -12px;
+  left: -130px;
+  color: #1b3d84;
+}
+
+@media only screen and (max-width: 800px) {
+  .table-group {
+    grid-template-columns: repeat(auto-fill, 90%);
+  }
+
+  .table-backgroud {
+    height: 2000px;
+  }
+
+  .table {
+    max-height: 1000px;
+    margin-left: 5%;
+    margin-top: -50px;
+    min-width: 400px;
+  }
+
+  .popup-window {
+    left: 12% !important;
+    position: sticky;
+    top: 13%;
+  }
+
+  .page-blur {
+    height: 2350px !important;
+  }
+}
+
+.filter-area {
+  height: 75px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  padding: 0px 95px;
+  gap: 10px;
+}
+
+.filter-title {
+  margin-top: 10px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #1b3d84;
+}
+
+.filter-label {
+  height: 32px;
+  padding: 4px 16px;
+  gap: 8px;
+  border: 2px solid #1b3d84;
+  border-radius: 8px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #1b3d84;
+  background-color: inherit;
+}
+
+.filter-label:hover {
+  border: 2px solid #c8d7f5;
+}
+
+#filter.btn-close-document {
+  position: relative;
+  margin-left: 4px;
+  top: -1px;
+  right: -3px;
+}
+
+.custom-tooltip .rc-tooltip-inner {
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
+  background: #fcfdff;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #1b3d84;
+  border: 2px solid #c8d7f5;
+}
