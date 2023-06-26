@@ -173,7 +173,7 @@
   line-height: 19px;
   display: flex;
   align-items: center;
-  color: #1b3d84;
+  color: #1b3d84 !important;
   border: none;
   background-color: inherit;
   border-top: 2px solid #c8d7f5;
@@ -269,7 +269,7 @@
   font-style: normal;
   font-size: 24px;
   border: none;
-  color: #1b3d84;
+  color: #1b3d84 !important;
   font-weight: 600;
 }
 
@@ -279,7 +279,7 @@
   font-weight: 400;
   font-size: 24px;
   line-height: 29px;
-  color: #1b3d84;
+  color: #1b3d84 !important;
 }
 
 .add-description {
@@ -303,7 +303,7 @@
   font-family: "Lato";
   font-style: normal;
   font-size: 20px;
-  color: #1b3d84;
+  color: #1b3d84 !important;
   font-weight: 500;
 }
 
@@ -418,7 +418,7 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  color: #1b3d84;
+  color: #1b3d84 !important;
   vertical-align: middle;
 }
 
@@ -452,10 +452,11 @@
   line-height: 16px;
   margin-bottom: 10px;
   display: flex;
-  color: #1b3d84;
+  color: #1b3d84 !important;
   flex: none;
   order: 0;
   flex-grow: 0;
+  background-color: inherit !important;
 }
 
 .add-to-do-icon {
@@ -466,7 +467,8 @@
   flex: none;
   order: 1;
   flex-grow: 0;
-  background: url("./images/plus.png");
+  background-image: url("./images/plus.png");
+  background-color: inherit !important;
   background-repeat: no-repeat;
 }
 
@@ -541,6 +543,7 @@
 
 .filter-label {
   height: 32px;
+  min-width: 50px;
   padding: 4px 16px;
   gap: 8px;
   border: 2px solid #1b3d84;
@@ -551,7 +554,7 @@
   font-size: 16px;
   line-height: 20px;
   color: #1b3d84;
-  background-color: inherit;
+  background-color: inherit !important;
 }
 
 .filter-label:hover {
@@ -573,6 +576,6 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  color: #1b3d84;
+  color: #1b3d84 !important;
   border: 2px solid #c8d7f5;
 }

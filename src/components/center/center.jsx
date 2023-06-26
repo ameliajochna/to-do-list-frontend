@@ -230,7 +230,7 @@ export const Center = () => {
                             ? (e) => handleDragEnter(e, { grpI, itemI: 0 })
                             : null
                         }
-                        className="table flex-grow-1"
+                        className="table"
                         style={{
                           height: filterName || filterPriority ? "95%" : "100%",
                           marginTop:
