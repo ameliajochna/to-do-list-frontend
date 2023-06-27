@@ -42,6 +42,8 @@ export const Center = () => {
     }
   };
 
+  const [datavar, setDataVar] = useState(null);
+
   const getTasks = async () => {
     const requestOptions = {
       method: "GET",
@@ -55,6 +57,7 @@ export const Center = () => {
       requestOptions,
     );
     const data = await response.json();
+    setDataVar(data);
     if (!response.ok) {
       setErrorMessage("Something went wrong. Couldn't load the tasks");
     } else {
@@ -131,15 +134,30 @@ export const Center = () => {
   };
 
   const handleDragEnter = (e, p) => {
-    if (e.target !== dragNode.current) {
+    if (
+      dragging &&
+      dragNode.current &&
+      dragItem.current &&
+      p.grpI !== dragItem.current.grpI
+    ) {
       const copyList = [...list];
       let heldItem =
         copyList[dragItem.current.grpI].items[dragItem.current.itemI];
 
+      console.log("held:", heldItem);
+      console.log(datavar);
       if (p.grpI === 0) heldItem.state = "To do";
       else if (p.grpI === 1) heldItem.state = "In progress";
       else heldItem.state = "Done";
 
+      console.log("changed: ", heldItem);
+
+      datavar.map((e) => {
+        if (e.id === heldItem.id) return heldItem;
+        else return e;
+      });
+
+      getList(datavar);
       handleUpdate(heldItem);
       dragItem.current = p;
     }
@@ -184,6 +202,11 @@ export const Center = () => {
     if (itemCopy.state === "To do") itemCopy.state = "In progress";
     else if (itemCopy.state === "In progress") itemCopy.state = "Done";
     else return;
+    datavar.map((e) => {
+      if (e.id === itemCopy.id) return itemCopy;
+      else return e;
+    });
+    getList(datavar);
     handleUpdate(itemCopy);
   };
 

@@ -3,6 +3,7 @@
   left: 14%;
   top: max(96px, 10%);
   width: 86%;
+  min-height: 700px;
   height: calc(100% - max(96px, 10%));
   background: #f7f9ff;
 }
