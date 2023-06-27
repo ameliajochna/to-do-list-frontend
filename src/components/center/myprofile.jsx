@@ -19,7 +19,10 @@ const MyProfile = ({ token, setMyProfile }) => {
         Authorization: "Bearer " + token,
       },
     };
-    const response = await fetch("api/users/me", requestOptions);
+    const response = await fetch(
+      "https://productivity-pzaiolprqa-uc.a.run.app/api/users/me",
+      requestOptions,
+    );
     const data = await response.json();
 
     if (!response.ok) {
@@ -51,7 +54,10 @@ const MyProfile = ({ token, setMyProfile }) => {
       }),
     };
 
-    const response = await fetch(`/api/users/${userId}`, requestOptions);
+    const response = await fetch(
+      `https://productivity-pzaiolprqa-uc.a.run.app/api/users/${userId}`,
+      requestOptions,
+    );
     const data = await response.json();
     console.log(data);
 

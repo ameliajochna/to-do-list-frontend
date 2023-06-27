@@ -49,6 +49,7 @@ const Sidebar = ({ percent, setMyProfile }) => {
 
       {(sideBar || windowWidth >= 1250) && (
         <>
+          <div className="filler" />
           <div className="logo-corner">
             <div className="sidebar-logo" />
             {windowWidth <= 1250 && (
@@ -80,7 +81,7 @@ const Sidebar = ({ percent, setMyProfile }) => {
               </button>
             </div>
           </div>
-          <div className="filler" />
+
           <div className="red-line" />
           <div className="page-blur-sidebar" />
         </>

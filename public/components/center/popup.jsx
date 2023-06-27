@@ -40,7 +40,10 @@ const Popup = ({
         priority: priority,
       }),
     };
-    const response = await fetch("/api/tasks", requestOptions);
+    const response = await fetch(
+      "https://productivity-pzaiolprqa-uc.a.run.app/api/tasks",
+      requestOptions,
+    );
     if (!response.ok) {
       setErrorMessage("Something went wrong while adding a task");
     }

@@ -23,7 +23,10 @@ const Register = ({ setRegister }) => {
       body: JSON.stringify({ email: email, hashed_password: password }),
     };
 
-    const response = await fetch("/api/users", requestOptions);
+    const response = await fetch(
+      "https://productivity-pzaiolprqa-uc.a.run.app/api/users",
+      requestOptions,
+    );
     const data = await response.json();
 
     if (!response.ok) {

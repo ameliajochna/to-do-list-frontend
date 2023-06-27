@@ -271,7 +271,8 @@
 
 @media only screen and (min-width: 800px) {
   .filler {
-    display: none;
+    height: 0px;
+    width: 0px;
   }
 }
 
@@ -309,17 +310,18 @@
 
 @media only screen and (max-width: 800px) {
   .filler {
+    display: block;
     position: absolute;
-    top: max(900px, 97%);
+    top: 0px;
     left: 0px;
-    background: #fcfdff;
-    height: 1000px;
-    width: 200px;
+    width: 200px !important;
+    height: 2100px !important;
+    background-color: #fcfdff;
   }
   .red-line {
-    height: 2115px;
+    height: 2100px;
   }
   .page-blur-sidebar {
-    height: 2350px !important;
+    height: 2265px !important;
   }
 }

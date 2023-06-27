@@ -15,7 +15,10 @@ export const UserProvider = (props) => {
         },
       };
 
-      const response = await fetch("/api/users/me", requestOptions);
+      const response = await fetch(
+        "https://productivity-pzaiolprqa-uc.a.run.app/api/users/me",
+        requestOptions,
+      );
 
       if (!response.ok) {
         setToken(null);

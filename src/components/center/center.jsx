@@ -31,7 +31,10 @@ export const Center = () => {
         Authorization: "Bearer " + token,
       },
     };
-    const response = await fetch(`/api/tasks/${id}`, requestOptions);
+    const response = await fetch(
+      `https://productivity-pzaiolprqa-uc.a.run.app/api/tasks/${id}`,
+      requestOptions,
+    );
     if (!response.ok) {
       setErrorMessage("Failed to delete");
     } else {
@@ -47,7 +50,10 @@ export const Center = () => {
         Authorization: "Bearer " + token,
       },
     };
-    const response = await fetch("api/tasks", requestOptions);
+    const response = await fetch(
+      "https://productivity-pzaiolprqa-uc.a.run.app/api/tasks",
+      requestOptions,
+    );
     const data = await response.json();
     if (!response.ok) {
       setErrorMessage("Something went wrong. Couldn't load the tasks");
@@ -89,17 +95,7 @@ export const Center = () => {
   const [popWindow, setPop] = useState(false);
   const popGroup = useRef();
 
-  let dragImg;
-
-  useEffect(() => {
-    dragImg = new Image(0, 0);
-    dragImg.src =
-      "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
-  });
-
   const handleDragStart = (e, p) => {
-    e.dataTransfer.setDragImage(dragImg, 0, 0);
-
     dragNode.current = e.target;
     dragNode.current.addEventListener("dragend", handleDragEnd);
     dragItem.current = p;
@@ -123,7 +119,10 @@ export const Center = () => {
         priority: task.priority,
       }),
     };
-    const response = await fetch(`/api/tasks/${task.id}`, requestOptions);
+    const response = await fetch(
+      `https://productivity-pzaiolprqa-uc.a.run.app/api/tasks/${task.id}`,
+      requestOptions,
+    );
     if (!response.ok) {
       setErrorMessage("Couldn't update");
     } else {

@@ -18,7 +18,10 @@ const Login = ({ setRegister }) => {
       ),
     };
 
-    const response = await fetch("/api/token", requestOptions);
+    const response = await fetch(
+      "https://productivity-pzaiolprqa-uc.a.run.app/api/token",
+      requestOptions,
+    );
     const data = await response.json();
 
     if (!response.ok) {
