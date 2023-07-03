@@ -1,0 +1,7 @@
+{
+  "name": "Productivity Task Manager",
+  "short_name": "Productivity",
+  "description": "Web application which allows for good organization due to task managment",
+  "start_url": "/",
+  "display": "standalone"
+}
