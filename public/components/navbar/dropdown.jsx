@@ -72,7 +72,7 @@ const DropDown = ({ place, changeClick, defaultPriority, error }) => {
   );
 };
 
-export const DropdownElement = ({ name, handleClick, clicked }) => {
+const DropdownElement = ({ name, handleClick, clicked }) => {
   return (
     <ul
       className="dropdown-element"

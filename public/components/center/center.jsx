@@ -14,7 +14,7 @@ export const Center = () => {
   const [tasks, setTasks] = useState(null);
   const [loaded, setLoaded] = useState(false);
   const [percent, setPercent] = useState(0);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [, setErrorMessage] = useState("");
 
   const [filterName, setFilterName] = useState("");
   const [filterPriority, setFilterPriority] = useState("");
@@ -297,20 +297,18 @@ export const Center = () => {
                             aria-labelledby="dropdownMenuButton"
                           >
                             {grpI !== 2 ? (
-                              <>
-                                <button
-                                  className="item-options"
-                                  id="first"
-                                  onClick={() => moveAllNext(grpI)}
-                                >
-                                  Move all to{" "}
-                                  {grpI === 0 ? "In progress" : "Done"}
-                                  <div
-                                    className="dropdown-icon"
-                                    id="changemenu"
-                                  />
-                                </button>
-                              </>
+                              <button
+                                className="item-options"
+                                id="first"
+                                onClick={() => moveAllNext(grpI)}
+                              >
+                                Move all to{" "}
+                                {grpI === 0 ? "In progress" : "Done"}
+                                <div
+                                  className="dropdown-icon"
+                                  id="changemenu"
+                                />
+                              </button>
                             ) : (
                               <></>
                             )}
@@ -330,126 +328,18 @@ export const Center = () => {
                         )}
                         {grp.items.map((item, itemI) => {
                           return (
-                            <div
-                              draggable
-                              key={item.id}
-                              onDragStart={(e) =>
-                                handleDragStart(e, { grpI, itemI })
-                              }
-                              onDragEnter={
-                                dragging
-                                  ? (e) => {
-                                      handleDragEnter(e, { grpI, itemI });
-                                    }
-                                  : null
-                              }
-                              className="table-item"
-                            >
-                              <div className="priority-block">
-                                <div
-                                  className="item-priority"
-                                  style={{
-                                    border:
-                                      "1px solid " + defineColor(item.priority),
-                                  }}
-                                >
-                                  <p
-                                    className="priority-text"
-                                    style={{
-                                      color: defineColor(item.priority),
-                                    }}
-                                  >
-                                    {item.priority}
-                                  </p>
-                                </div>
-
-                                <Tooltip
-                                  placement="top"
-                                  overlay={<span>More options</span>}
-                                  overlayClassName="custom-tooltip"
-                                >
-                                  <button
-                                    className="item-button-block"
-                                    data-bs-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                  />
-                                </Tooltip>
-                                <div
-                                  className="dropdown-menu"
-                                  id="delate"
-                                  aria-labelledby="dropdownMenuButton"
-                                >
-                                  {grpI === 2 ? (
-                                    <></>
-                                  ) : (
-                                    <button
-                                      className="item-options"
-                                      id="first"
-                                      onClick={() => moveToNext(grpI, itemI)}
-                                    >
-                                      {grpI === 0
-                                        ? "Move to In Progress"
-                                        : "Move to Done"}
-                                      <div
-                                        className="dropdown-icon"
-                                        id="dragging"
-                                        style={{
-                                          position: "absolute",
-                                          marginTop: "2px",
-                                          right: "17px",
-                                        }}
-                                      />
-                                    </button>
-                                  )}
-
-                                  <div
-                                    className="divider"
-                                    style={{ borderColor: "#C8D7F5" }}
-                                  />
-                                  <button
-                                    className="item-options"
-                                    onClick={() => handleEdit(item)}
-                                  >
-                                    Change this task
-                                    <div
-                                      className="dropdown-icon"
-                                      id="change"
-                                    />
-                                  </button>
-
-                                  <div
-                                    className="divider"
-                                    style={{ borderColor: "#C8D7F5" }}
-                                  />
-                                  <button
-                                    className="item-options"
-                                    id={grpI === 2 ? "first" : "second"}
-                                    onClick={() => handleDelete(item.id)}
-                                  >
-                                    Delete this task
-                                    <div
-                                      className="dropdown-icon"
-                                      id="delete"
-                                    />
-                                  </button>
-                                </div>
-                              </div>
-                              <div className="item-text">
-                                {item.title ? (
-                                  <div className="item-title">{item.title}</div>
-                                ) : (
-                                  <></>
-                                )}
-                                {item.description ? (
-                                  <div className="item-description">
-                                    {item.description}
-                                  </div>
-                                ) : (
-                                  <></>
-                                )}
-                              </div>
-                            </div>
+                            <TaskItem
+                              item={item}
+                              itemI={itemI}
+                              grpI={grpI}
+                              handleDragStart={handleDragStart}
+                              dragging={dragging}
+                              handleDragEnter={handleDragEnter}
+                              defineColor={defineColor}
+                              moveToNext={moveToNext}
+                              handleEdit={handleEdit}
+                              handleDelete={handleDelete}
+                            />
                           );
                         })}
                       </div>
@@ -490,6 +380,118 @@ export const Center = () => {
       ) : (
         <p>Loading</p>
       )}
+    </>
+  );
+};
+
+const TaskItem = ({
+  item,
+  itemI,
+  grpI,
+  handleDragStart,
+  dragging,
+  handleDragEnter,
+  defineColor,
+  moveToNext,
+  handleEdit,
+  handleDelete,
+}) => {
+  return (
+    <>
+      <div
+        draggable
+        key={item.id}
+        onDragStart={(e) => handleDragStart(e, { grpI, itemI })}
+        onDragEnter={
+          dragging
+            ? (e) => {
+                handleDragEnter(e, { grpI, itemI });
+              }
+            : null
+        }
+        className="table-item"
+      >
+        <div className="priority-block">
+          <div
+            className="item-priority"
+            style={{
+              border: "1px solid " + defineColor(item.priority),
+            }}
+          >
+            <p
+              className="priority-text"
+              style={{
+                color: defineColor(item.priority),
+              }}
+            >
+              {item.priority}
+            </p>
+          </div>
+
+          <Tooltip
+            placement="top"
+            overlay={<span>More options</span>}
+            overlayClassName="custom-tooltip"
+          >
+            <button
+              className="item-button-block"
+              data-bs-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            />
+          </Tooltip>
+          <div
+            className="dropdown-menu"
+            id="delate"
+            aria-labelledby="dropdownMenuButton"
+          >
+            {grpI === 2 ? (
+              <></>
+            ) : (
+              <button
+                className="item-options"
+                id="first"
+                onClick={() => moveToNext(grpI, itemI)}
+              >
+                {grpI === 0 ? "Move to In Progress" : "Move to Done"}
+                <div
+                  className="dropdown-icon"
+                  id="dragging"
+                  style={{
+                    position: "absolute",
+                    marginTop: "2px",
+                    right: "17px",
+                  }}
+                />
+              </button>
+            )}
+
+            <div className="divider" style={{ borderColor: "#C8D7F5" }} />
+            <button className="item-options" onClick={() => handleEdit(item)}>
+              Change this task
+              <div className="dropdown-icon" id="change" />
+            </button>
+
+            <div className="divider" style={{ borderColor: "#C8D7F5" }} />
+            <button
+              className="item-options"
+              id={grpI === 2 ? "first" : "second"}
+              onClick={() => handleDelete(item.id)}
+            >
+              Delete this task
+              <div className="dropdown-icon" id="delete" />
+            </button>
+          </div>
+        </div>
+        <div className="item-text">
+          {item.title ? <div className="item-title">{item.title}</div> : <></>}
+          {item.description ? (
+            <div className="item-description">{item.description}</div>
+          ) : (
+            <></>
+          )}
+        </div>
+      </div>
     </>
   );
 };
