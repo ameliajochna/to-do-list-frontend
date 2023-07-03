@@ -1,40 +1,20 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import DropDownAtom from "./images/dropdown.png";
 import DropUpAtom from "./images/dropup.png";
-import PriorityElement from "./priorityelement";
 
 const DropDown = ({ place, changeClick, defaultPriority, error }) => {
-  const [clicked, setClicked] = useState(defaultPriority);
-  const [status, setStatus] = useState(false);
-  const dropdownRef = useRef(null);
-
-  const toggleDropDown = () => {
-    setStatus(!status);
-  };
-
-  const handleOptionClick = () => {
-    setStatus(false);
-  };
-
-  const handleDropdownClose = () => {
-    setStatus(false);
-  };
-
-  useEffect(() => {
-    const dropdownElement = dropdownRef.current;
-    dropdownElement.addEventListener("hidden.bs.dropdown", handleDropdownClose);
-
-    return () => {
-      dropdownElement.removeEventListener(
-        "hidden.bs.dropdown",
-        handleDropdownClose,
-      );
-    };
-  }, []);
+  const [isOpen, setIsOpen] = useState(false);
+  const [clicked, setClicked] = useState("");
 
   useEffect(() => {
     setClicked(defaultPriority);
   }, [defaultPriority]);
+
+  const handleClick = (name) => {
+    setClicked(name);
+    changeClick(name);
+    setIsOpen(false);
+  };
 
   return (
     <>
@@ -45,75 +25,61 @@ const DropDown = ({ place, changeClick, defaultPriority, error }) => {
       ) : (
         <></>
       )}
-      <div
-        className="drop-down"
-        id={place}
-        ref={dropdownRef}
-        style={{
-          border:
-            clicked !== ""
-              ? "1px solid #FF4F7B"
-              : error !== ""
-              ? "(1px solid #AF3218"
-              : place === "pu"
-              ? "1px solid #1B3D84"
-              : "2px solid #C8D7F5",
-        }}
-      >
+      <div className="dropdown-bar" id={place}>
         <button
-          className="dropdown-button"
-          type="button"
-          id="dropdownMenuButton"
-          data-bs-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded={status ? "true" : "false"}
-          onClick={toggleDropDown}
+          className={`dropdown-btn ${clicked ? "dropdown-clicked" : ""} ${
+            isOpen ? "dropdown-open" : ""
+          } ${error ? "dropdown-error" : ""} `}
+          id={place}
+          onClick={() => setIsOpen(!isOpen)}
         >
           <p
-            className="priority-title"
-            id={place}
-            style={{ fontWeight: clicked ? "700" : "400" }}
+            className={`dropdown-bar-text  ${
+              clicked ? "dropdown-bar-text-clicked" : ""
+            }`}
           >
             {clicked ? clicked : "Priority"}
           </p>
           <img
             className="dropdown-atom"
-            src={status ? DropUpAtom : DropDownAtom}
+            src={isOpen ? DropUpAtom : DropDownAtom}
             alt=""
           />
         </button>
-        <div
-          className="dropdown-menu"
-          id={place}
-          aria-labelledby="dropdownMenuButton"
-        >
-          <PriorityElement
-            name="Low"
-            setClick={setClicked}
-            changeClick={changeClick}
-            onClick={handleOptionClick}
-            clicked={clicked}
-            last={false}
-          />
-          <PriorityElement
-            name="Medium"
-            setClick={setClicked}
-            changeClick={changeClick}
-            onClick={handleOptionClick}
-            clicked={clicked}
-            last={false}
-          />
-          <PriorityElement
-            name="High"
-            setClick={setClicked}
-            changeClick={changeClick}
-            onClick={handleOptionClick}
-            clicked={clicked}
-            last={true}
-          />
-        </div>
+        {isOpen ? (
+          <div className="dropdown-list" id={place}>
+            <DropdownElement
+              name="Low"
+              handleClick={handleClick}
+              clicked={clicked}
+            />
+            <DropdownElement
+              name="Medium"
+              handleClick={handleClick}
+              clicked={clicked}
+            />
+            <DropdownElement
+              name="High"
+              handleClick={handleClick}
+              clicked={clicked}
+            />
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </>
+  );
+};
+
+export const DropdownElement = ({ name, handleClick, clicked }) => {
+  return (
+    <ul
+      className="dropdown-element"
+      onClick={() => handleClick(name === clicked ? "" : name)}
+    >
+      <p className="dropdown-text">{clicked === name ? "None" : name}</p>
+    </ul>
   );
 };
 

@@ -111,84 +111,86 @@ const Popup = ({
             defaultPriority={priority}
             error={error}
           />
-          {error ? (
-            <p className="error-input">Please choose priority of the task</p>
-          ) : (
-            <></>
-          )}
-          {title !== "" ? (
-            <p className="drop-down-description" id="title">
-              Title
-            </p>
-          ) : (
-            <></>
-          )}
-          <div
-            className="add-title"
-            style={{
-              border:
-                title !== ""
-                  ? "1px solid #FF4F7B"
-                  : info
-                  ? "1px solid #AF3218"
-                  : "1px solid #1B3D84",
-            }}
-          >
-            <input
-              type="text"
-              required
-              placeholder="Add title..."
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="input-title"
-            />
+          <div className="popup-form">
+            {error ? (
+              <p className="error-input">Please choose priority of the task</p>
+            ) : (
+              <></>
+            )}
+            {title !== "" ? (
+              <p className="drop-down-description" id="title">
+                Title
+              </p>
+            ) : (
+              <></>
+            )}
+            <div
+              className="add-title"
+              style={{
+                border:
+                  title !== ""
+                    ? "1px solid #FF4F7B"
+                    : info
+                    ? "1px solid #AF3218"
+                    : "1px solid #1B3D84",
+              }}
+            >
+              <input
+                type="text"
+                required
+                placeholder="Add title..."
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="input-title"
+              />
+            </div>
+            {description !== "" ? (
+              <p className="drop-down-description" id="description">
+                Description
+              </p>
+            ) : (
+              <></>
+            )}
+            <div
+              className="add-description"
+              style={{
+                border:
+                  description !== ""
+                    ? "1px solid #FF4F7B"
+                    : info
+                    ? "1px solid #AF3218"
+                    : "1px solid #1B3D84",
+              }}
+            >
+              <textarea
+                type="text"
+                required
+                placeholder="Add description..."
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                className="input-description"
+              />
+            </div>
+            {info ? (
+              <p className="error-input" style={{ marginRight: "110px" }}>
+                Please type in title or description of the task
+              </p>
+            ) : (
+              <></>
+            )}
+            <button
+              className="submit-login"
+              style={{
+                width: "205px",
+                height: "35px",
+                marginTop: "32px",
+                marginBottom: "44px",
+              }}
+              onClick={(e) => checkSubmit(e)}
+            >
+              Create a new task
+            </button>
           </div>
-          {description !== "" ? (
-            <p className="drop-down-description" id="description">
-              Description
-            </p>
-          ) : (
-            <></>
-          )}
-          <div
-            className="add-description"
-            style={{
-              border:
-                description !== ""
-                  ? "1px solid #FF4F7B"
-                  : info
-                  ? "1px solid #AF3218"
-                  : "1px solid #1B3D84",
-            }}
-          >
-            <textarea
-              type="text"
-              required
-              placeholder="Add description..."
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className="input-description"
-            />
-          </div>
-          {info ? (
-            <p className="error-input" style={{ marginRight: "110px" }}>
-              Please type in title or description of the task
-            </p>
-          ) : (
-            <></>
-          )}
-          <button
-            className="submit-login"
-            style={{
-              width: "205px",
-              height: "35px",
-              marginTop: "32px",
-              marginBottom: "44px",
-            }}
-            onClick={(e) => checkSubmit(e)}
-          >
-            Create a new task
-          </button>
         </div>
       ) : (
         loadData()

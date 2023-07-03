@@ -580,3 +580,7 @@
   color: #1b3d84 !important;
   border: 2px solid #c8d7f5;
 }
+
+.popup-form {
+  z-index: 1;
+}
